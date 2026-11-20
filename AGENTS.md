@@ -87,6 +87,19 @@ Questo registro è stato aggiunto a ogni memoria di agente su questo computer do
 
 I dati demo sono permessi SOLO se esplicitamente etichettati come "DATI DEMO / MOCK" e attivabili SOLO tramite uno switch dedicato ("Dati demo" ON/OFF), visibile e non attivo di default.
 
+## Manuali Utente Approfonditi del Cluster FGT-SDK (2026-11-20)
+
+Documentazione approfondita e skill dedicate per i tool del cluster sono installate:
+
+- **Indice manuali**: `/home/lisergico25/projects/readmago/kb/manuali/README-INDICE.md`
+- **gofrontai**: `/home/lisergico25/projects/readmago/kb/manuali/gofrontai-USER-MANUAL.md` + skill
+- **gofainder**: `/home/lisergico25/projects/readmago/kb/manuali/gofainder-USER-MANUAL.md` + skill
+- **godocai**: `/home/lisergico25/projects/readmago/kb/manuali/godocai-USER-MANUAL.md` + skill
+- **nocodaigo**: `/home/lisergico25/projects/readmago/kb/manuali/nocodaigo-USER-MANUAL.md` + skill
+- **biblaigo**: `/home/lisergico25/projects/readmago/kb/manuali/biblaigo-USER-MANUAL.md` + skill
+
+Per l'uso operativo di questi tool nel flusso corrente readmago: consultare i manuali e le skill.
+
 ## Riferimento
 
 Progetto monito: `/home/lisergico25/projects/nemotron-cli/` (NON usare come riferimento, solo come monito)
