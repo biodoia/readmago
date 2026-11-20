@@ -13,3 +13,5 @@ backends:
     cwd: /home/lisergico25/projects/readmago
 loop_commands:
   - "/meta-dev LOOP monitor: scansiona tutti i repository, valuta README, migliora se necessario"
+  - "/meta-dev LOOP fleet-intake: intake anti-slop/taste + verify (go build/vet/test) su tutte le repo FGT-SDK"
+  - "/meta-dev LOOP evals: run external CLI agent evals (skill × LLM matrix) e report in kb/evals"
