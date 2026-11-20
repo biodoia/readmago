@@ -61,3 +61,6 @@ catalog/snippets/db/
 
 # Meta-dev kicker state (runtime, non da committare)
 .metadev/
+
+# Staging repos clonati dal data-engineer (runtime, non da committare)
+.monitored-repos/
