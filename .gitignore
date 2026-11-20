@@ -43,6 +43,12 @@ tmp/
 /readmago
 /agent/*/readmago-mago
 /agent/*/readmago-harvester
+/agent/*/readmago-judge
+/agent/*/readmago-reviewer
+/agent/*/readmago-writer
+/agent/*/readmago-data-engineer
+/agent/*/readmago-instructor
+/agent/*/readmago-demo
 
 # Audio trascrizioni (file binari grandi, non da committare)
 kb/youtube-trascrizioni/audio/*.wav
