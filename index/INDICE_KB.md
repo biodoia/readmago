@@ -41,12 +41,15 @@ readmago/
 │   ├── readmago-data-engineer/  # Porta 8771 — metriche repo e priorità intervento
 │   ├── readmago-instructor/     # Porta 8772 — esperto istruzioni e presentazioni
 │   └── readmago-demo/           # Porta 8773 — demo-screenshot + demo-video (TUI + web)
+├── cmd/readmagogod/              # Demone unificato (go.mod, main.go)
+│   └── main.go                   # Lancia tutti gli agenti + loop monitor/harvest
 ├── configs/                     # Configurazioni
 │   ├── meta-dev-kicker.yaml     # Config loop harvest
 │   └── meta-dev-kicker-monitor.yaml  # Config loop monitoraggio h24/7
 ├── scripts/                     # Script operativi
 │   ├── harvest-loop.sh          # Ciclo harvest (gofainder→nocodaigo→godocai)
-│   └── monitor-repos.sh         # Ciclo monitoraggio h24/7 di tutti i repo
+│   ├── monitor-repos.sh         # Ciclo monitoraggio h24/7 di tutti i repo
+│   └── monitor-loop.sh          # Loop infinito che esegue monitor-repos.sh
 └── tmp/                         # File temporanei e log
 ```
 
