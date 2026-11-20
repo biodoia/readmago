@@ -1,0 +1,12 @@
+{
+  "last_kick_at": "2026-11-20T07:16:44.342679743+01:00",
+  "kick_count": 2,
+  "last_prompt": "Project workspace: /home/lisergico25/projects\n\n/meta-dev CONTINUA SENZA FERMARTI.\n\nSei stato riavviato dal meta-dev-kicker perché il heartbeat era scaduto\n(l'agente si era fermato dopo un report, non perché il lavoro era finito).\n\nObblighi:\n1. Leggi stato: ~/.local/share/meta-dev-kicker/ (heartbeat.json, next-command.txt, state.json, queue/)\n2. Esegui Goal Discovery (build/test, servizi failed, TODO, mem0)\n3. Scegli UN goal, implementa, testa, commit granulari, push\n4. Aggiorna heartbeat ogni pochi minuti (meta-dev-kicker heartbeat working)\n5. A fine loop: scrivi next-command.txt con il prompt del LOOP N+1\n6. Stop SOLO se esiste file STOP o l'utente ha scritto \"stop\"\n\nNON chiudere con un report e basta. Dopo il report, o lancia un altro micro-loop\nnello stesso turno, o lascia next-command + heartbeat idle così il kicker riparte.",
+  "last_reason": "idle age=24h0m0s status= ok_beat=false",
+  "kick_times": [
+    "2026-11-20T07:11:44.282437152+01:00",
+    "2026-11-20T07:16:44.342679743+01:00"
+  ],
+  "last_heartbeat": "0001-01-01T00:00:00Z",
+  "loop_hint": 2
+}

@@ -3,7 +3,7 @@
 **Progetto:** readmago — il mago dei README di GitHub  
 **Path:** `/home/lisergico25/projects/readmago/`  
 **Data:** 2026-11-20  
-**Stato:** Struttura completa — skill, agenti, KB, meta-dev-kicker configurati. Trascrizione YouTube completata.
+**Stato:** Struttura completa — skill, agenti, KB, meta-dev-kicker. Principi anti-slop, no-ai-slop, diagram-design integrati da trendy.
 
 ## Struttura progetto
 
@@ -11,36 +11,36 @@
 readmago/
 ├── README.md, AGENTS.md, QWEN.md, LICENSE (MIT), agent-card.json, go.mod, .gitignore
 ├── kb/                          # Knowledge Base (documentazione raccolta)
-│   ├── github-docs/
-│   │   ├── github-education-readme-guide.md
-│   │   ├── awesome-readme-matiassingers.md
-│   │   ├── awesome-readme-matiassingers-full.json
-│   │   └── github-education-full.json
-│   ├── forum-siti-specializzati/
+│   ├── github-docs/             # Documentazione ufficiale GitHub
+│   ├── forum-siti-specializzati/ # Consigli da forum e siti specializzati
 │   │   ├── freecodecamp-readme-italiano.md
+│   │   ├── anti-slop-design-wwewtech.md      ← NUOVO (trendy)
+│   │   ├── no-ai-slop-zread-ai.md            ← NUOVO (trendy/zread.ai)
 │   │   └── freecodecamp-readme-full.json
-│   ├── youtube-trascrizioni/
+│   ├── youtube-trascrizioni/    # Trascrizioni video YouTube
 │   │   ├── how-to-design-professional-readme.md
 │   │   ├── audio/zm5P1Y59WGk.wav
-│   │   └── trascrizione-zm5P1Y59WGk.md   ← TRASCRIZIONE COMPLETATA
-│   └── esempi-readme-perfetti/
-│       └── migliori-esempi-2024-2025.md
+│   │   └── trascrizione-zm5P1Y59WGk.md
+│   └── esempi-readme-perfetti/  # Esempi README eccellenti
+│       ├── migliori-esempi-2024-2025.md
+│       └── diagram-design-cathrynlavery.md   ← NUOVO (trendy)
 ├── index/INDICE_KB.md
 ├── catalog/                     # Output nocodaigo (snippet indicizzati)
 │   └── snippets/
-├── skill/                       # 3 skill
-│   ├── readme-gen/SKILL.md
-│   ├── readme-lint/SKILL.md
+├── skill/                       # 3 skill (aggiornate con anti-slop)
+│   ├── readme-gen/SKILL.md      ← AGGIORNATA (anti-slop, no-ai-slop, diagram-design)
+│   ├── readme-lint/SKILL.md     ← AGGIORNATA (check anti-slop)
 │   └── readme-harvest/SKILL.md
 ├── agent/                       # 2 agenti (compilabili, test verdi)
 │   ├── readmago-mago/           # Porta 8766 — orchestrator
 │   └── readmago-harvester/      # Porta 8767 — harvester
 ├── configs/meta-dev-kicker.yaml
 ├── scripts/harvest-loop.sh
+├── CHANGELOG.md
 └── tmp/
 ```
 
-## Fonti raccolte (14+ corroborate)
+## Fonti raccolte (17+ corroborate)
 
 | Fonte | Tipo | URL | Status |
 |-------|------|-----|--------|
@@ -53,13 +53,16 @@ readmago/
 | Tauri | Esempio README | https://github.com/tauri-apps/tauri | ✅ Citato |
 | LangChain | Esempio README | https://github.com/hwchase17/langchain | ✅ Citato |
 | Starknet.js | Esempio README | https://github.com/starknet-io/starknet.js | ✅ Citato |
+| anti-slop-design (wwewtech) | Skill Anti-AI-Slop UI/UX | https://github.com/wwewtech/anti-slop-design | ✅ Ingerito via trendy |
+| no-ai-slop (petergyang) | Writing Skill Anti-AI-Slop | https://github.com/petergyang/no-ai-slop | ✅ Ingerito via trendy + zread.ai |
+| diagram-design (cathrynlavery) | Diagrammi HTML+SVG senza Mermaid slop | https://github.com/cathrynlavery/diagram-design | ✅ Ingerito via trendy |
 
 ## Skill create (3)
 
 | Skill | ID | Descrizione |
 |-------|-----|-------------|
-| readme-gen | `readme-gen` | Generatore README da sorgente + contesto |
-| readme-lint | `readme-lint` | Linter conformità standard fgt-sdk |
+| readme-gen | `readme-gen` | Generatore README da sorgente + contesto (con anti-slop, no-ai-slop, diagram-design integrati) |
+| readme-lint | `readme-lint` | Linter conformità standard fgt-sdk + check anti-slop |
 | readme-harvest | `readme-harvest` | Pipeline raccolta → indicizzazione → generazione |
 
 ## Agenti creati (2)
@@ -75,12 +78,13 @@ readmago/
 - Script: `scripts/harvest-loop.sh`
 - Comando kicker: `meta-dev-kicker heartbeat working -agent readmago-harvester -loop 1`
 - Pipeline: gofainder search/extract → KB → nocodaigo explode → godocai scan
+- Stato: ✅ Attivo (PID avviato, primo kick eseguito)
 
 ## Prossimi passi (da eseguire in loop meta-dev)
 
 1. ✅ Installare yt-dlp — FATTO
-2. ✅ Trascrizione YouTube — FATTO (faster-whisper base, int8, italiano)
-3. Eseguire `nocodaigo explode` sulla KB per creare snippet indicizzati
-4. Eseguire `godocai scan` per generare documentazione skill/agenti
-5. Avviare meta-dev-kicker per il loop continuo
+2. ✅ Trascrizione YouTube — FATTO (faster-whisper base, italiano)
+3. ✅ Ingestione trendy (anti-slop-design, no-ai-slop, diagram-design) — FATTO
+4. ✅ Integrazione principi anti-slop in skill readme-gen/readme-lint — IN CORSO
+5. Eseguire `godocai scan` per generare documentazione skill/agenti
 6. Commit e push su GitHub (bidoia/readmago)
