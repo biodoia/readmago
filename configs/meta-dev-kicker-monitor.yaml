@@ -1,0 +1,15 @@
+# Configurazione meta-dev-kicker per readmago-monitor (h24/7)
+id: readmago-monitor
+default_agent: readmago-monitor
+data_dir: /home/lisergico25/projects/readmago/.metadev-monitor
+heartbeat_interval: 120s
+idle_after: 300s
+check_every: 60s
+min_kick_gap: 300s
+max_kicks_per_hour: 60
+backends:
+  - type: exec
+    command: /home/lisergico25/projects/readmago/scripts/monitor-repos.sh
+    cwd: /home/lisergico25/projects/readmago
+loop_commands:
+  - "/meta-dev LOOP monitor: scansiona tutti i repository, valuta README, migliora se necessario"

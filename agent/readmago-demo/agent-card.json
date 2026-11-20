@@ -1,0 +1,33 @@
+{
+  "name": "readmago-demo",
+  "description": "Agente demo-screenshot e demo-video: cattura screenshot TUI e video da browser web per inserire file multimediali nei README.",
+  "url": "http://127.0.0.1:8773",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8773"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8773",
+    "health": "http://127.0.0.1:8773/health"
+  },
+  "skills": [
+    {
+      "id": "demo-media",
+      "name": "Demo Screenshot e Video",
+      "description": "Cattura screenshot TUI e video da browser web per README.",
+      "tags": ["demo", "screenshot", "video", "tui", "browser", "multimedia"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

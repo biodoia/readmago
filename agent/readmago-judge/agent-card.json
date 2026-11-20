@@ -1,0 +1,33 @@
+{
+  "name": "readmago-judge",
+  "description": "Giudice di qualità README: valuta punteggio su 7 assi anti-slop e decide se è necessario intervento di miglioramento.",
+  "url": "http://127.0.0.1:8768",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8768"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8768",
+    "health": "http://127.0.0.1:8768/health"
+  },
+  "skills": [
+    {
+      "id": "readme-judge",
+      "name": "Giudice Qualità README",
+      "description": "Valuta README su 7 assi (anti-slop, UX, tipografia, spacing, interazioni, accessibilità, mobile) e assegna punteggio 0-100.",
+      "tags": ["readme", "judge", "quality", "lint", "anti-slop"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

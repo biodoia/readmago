@@ -1,0 +1,33 @@
+{
+  "name": "readmago-instructor",
+  "description": "Esperto di istruzioni e presentazioni: scrive guide, tutorial e documentazione per README ottimizzate per leggibilità umana e onboarding sviluppatori.",
+  "url": "http://127.0.0.1:8772",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8772"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8772",
+    "health": "http://127.0.0.1:8772/health"
+  },
+  "skills": [
+    {
+      "id": "instructor",
+      "name": "Esperto Istruzioni e Presentazioni",
+      "description": "Scrive guide, tutorial e documentazione per README ottimizzate per leggibilità umana.",
+      "tags": ["instructor", "instructions", "documentation", "tutorial", "no-ai-slop"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

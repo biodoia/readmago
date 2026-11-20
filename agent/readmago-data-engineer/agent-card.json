@@ -1,0 +1,33 @@
+{
+  "name": "readmago-data-engineer",
+  "description": "Data engineer di readmago: raccoglie metriche attività repo, calcola priorità di intervento e alimenta il ciclo di monitoraggio h24/7.",
+  "url": "http://127.0.0.1:8771",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8771"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8771",
+    "health": "http://127.0.0.1:8771/health"
+  },
+  "skills": [
+    {
+      "id": "data-engineer",
+      "name": "Data Engineer Repository",
+      "description": "Raccoglie metriche git e calcola priorità di intervento per ogni repository.",
+      "tags": ["data", "engineer", "metrics", "priority", "git"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

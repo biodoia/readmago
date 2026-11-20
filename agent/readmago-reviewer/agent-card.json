@@ -1,0 +1,33 @@
+{
+  "name": "readmago-reviewer",
+  "description": "Revisore bozze README: applica correzioni anti-slop e no-ai-slop a un README da migliorare.",
+  "url": "http://127.0.0.1:8769",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8769"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8769",
+    "health": "http://127.0.0.1:8769/health"
+  },
+  "skills": [
+    {
+      "id": "readme-reviewer",
+      "name": "Revisore Bozze README",
+      "description": "Applica correzioni anti-slop e no-ai-slop a un README bozza.",
+      "tags": ["readme", "reviewer", "edit", "anti-slop", "no-ai-slop"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

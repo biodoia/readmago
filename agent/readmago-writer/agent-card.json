@@ -1,0 +1,33 @@
+{
+  "name": "readmago-writer",
+  "description": "Scrittore README: genera README completi da contesto repository applicando anti-slop, no-ai-slop, diagram-design e standard fgt-sdk.",
+  "url": "http://127.0.0.1:8770",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8770"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8770",
+    "health": "http://127.0.0.1:8770/health"
+  },
+  "skills": [
+    {
+      "id": "readme-writer",
+      "name": "Scrittore README",
+      "description": "Genera README completi da contesto repository applicando tutti i principi di qualità.",
+      "tags": ["readme", "writer", "generate", "anti-slop", "no-ai-slop"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}
