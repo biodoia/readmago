@@ -51,3 +51,6 @@ kb/youtube-trascrizioni/audio/*.mp3
 
 # Database PebbleDB (nocodaigo output - non da committare)
 catalog/snippets/db/
+
+# Meta-dev kicker state (runtime, non da committare)
+.metadev/

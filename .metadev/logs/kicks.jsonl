@@ -1,2 +1,0 @@
-{"agent":"readmago-harvester","backends":["file"],"errors":null,"path":"/home/lisergico25/projects/readmago/.metadev/inbox/kick-20261120T061144Z.txt","reason":"idle age=24h0m0s status= ok_beat=false","ts":"2026-11-20T06:11:44Z"}
-{"agent":"readmago-harvester","backends":["file"],"errors":null,"path":"/home/lisergico25/projects/readmago/.metadev/inbox/kick-20261120T061644Z.txt","reason":"idle age=24h0m0s status= ok_beat=false","ts":"2026-11-20T06:16:44Z"}
