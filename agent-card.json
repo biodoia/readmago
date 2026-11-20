@@ -1,0 +1,39 @@
+{
+  "name": "readmago",
+  "description": "Il mago dei README di GitHub: genera, migliora e mantiene README spettacolari per repository dell'ecosistema Biodoia.",
+  "url": "http://127.0.0.1:8765",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8765"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8765",
+    "health": "http://127.0.0.1:8765/health"
+  },
+  "skills": [
+    {
+      "id": "readme-gen",
+      "name": "Generatore README",
+      "description": "Crea README spettacolari da sorgente e contesto del repository: badge, gerarchia visiva, tabelle, ASCII art, emoji, CTA.",
+      "tags": ["readme", "github", "documentation", "landing-page"]
+    },
+    {
+      "id": "readme-lint",
+      "name": "Linter README",
+      "description": "Valida che un README rispetti gli standard ecosistema fgt-sdk (badge, sezioni, documentazione correlata, verifica).",
+      "tags": ["linter", "compliance", "readme"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}
