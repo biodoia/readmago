@@ -1,0 +1,33 @@
+{
+  "name": "readmago-dashboard",
+  "description": "Cockpit HTMX/hypermedia della pipeline readmago: staging reale, coda data-engineer, verdetto judge, cantiere attivo e log eval.",
+  "url": "http://127.0.0.1:8780",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8780"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8780",
+    "health": "http://127.0.0.1:8780/health"
+  },
+  "skills": [
+    {
+      "id": "dashboard-htmx",
+      "name": "Dashboard HTMX readmago",
+      "description": "Hypermedia cockpit con dati reali della pipeline README.",
+      "tags": ["dashboard", "htmx", "hypermedia", "readmago"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

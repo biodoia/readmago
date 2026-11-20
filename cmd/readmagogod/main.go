@@ -36,6 +36,7 @@ var agents = []agent{
 	{name: "data-engineer", bin: "/home/lisergico25/.local/bin/readmago-data-engineer", port: 8771},
 	{name: "instructor", bin: "/home/lisergico25/.local/bin/readmago-instructor", port: 8772},
 	{name: "demo", bin: "/home/lisergico25/.local/bin/readmago-demo", port: 8773},
+	{name: "dashboard", bin: "/home/lisergico25/.local/bin/readmago-dashboard", port: 8780},
 }
 
 const (

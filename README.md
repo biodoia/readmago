@@ -21,6 +21,14 @@
 └─────────────────────────────────────────────┘
 ```
 
+### Cockpit web
+
+`readmago-dashboard` (`http://127.0.0.1:8780`) è il cockpit HTMX/hypermedia della pipeline:
+panoramica repo, cantiere attivo, coda pending, README pronti, verdetto della giuria e
+log delle eval esterne. I dati arrivano da `readmago-data-engineer`, `readmago-judge` e
+dallo staging reale; quando un servizio non è raggiungibile la UI lo dichiara esplicitamente
+invece di mostrare valori inventati. È avviato da `readmagogod` insieme agli altri agenti.
+
 ### Pacchetti principali
 
   - `pkg/readme/` — motore di generazione README (template, badge, sezioni, layout).
