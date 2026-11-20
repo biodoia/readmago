@@ -1,0 +1,33 @@
+{
+  "name": "readmago-harvester",
+  "description": "Agente harvester di readmago: raccoglie, indicizza e trasforma la documentazione sui README in skill e agenti, in loop autodeterminato con meta-dev-kicker.",
+  "url": "http://127.0.0.1:8767",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8767"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8767",
+    "health": "http://127.0.0.1:8767/health"
+  },
+  "skills": [
+    {
+      "id": "readme-harvest",
+      "name": "Raccolta Documentazione README",
+      "description": "Pipeline gofainder → nocodaigo → godocai per skill e agenti.",
+      "tags": ["harvest", "documentation", "pipeline"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

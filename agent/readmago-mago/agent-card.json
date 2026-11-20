@@ -1,0 +1,39 @@
+{
+  "name": "readmago-mago",
+  "description": "Agente orchestrator di readmago: coordina generazione, miglioramento e allineamento dei README agli standard ecosistema fgt-sdk.",
+  "url": "http://127.0.0.1:8766",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "protocols": {
+    "a2a": "http",
+    "http": "127.0.0.1:8766"
+  },
+  "endpoints": {
+    "web": "http://127.0.0.1:8766",
+    "health": "http://127.0.0.1:8766/health"
+  },
+  "skills": [
+    {
+      "id": "readme-gen",
+      "name": "Generatore README",
+      "description": "Crea README spettacolari da sorgente e contesto del repository.",
+      "tags": ["readme", "github", "generation"]
+    },
+    {
+      "id": "readme-lint",
+      "name": "Linter README",
+      "description": "Valida conformità README agli standard ecosistema fgt-sdk.",
+      "tags": ["readme", "lint", "compliance"]
+    }
+  ],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "provider": {
+    "organization": "Biodoia",
+    "url": "https://biodoia.dev"
+  }
+}

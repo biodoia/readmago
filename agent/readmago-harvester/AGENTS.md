@@ -1,0 +1,27 @@
+# AGENTS.md — readmago-harvester
+
+Agente harvester di readmago: esegue il loop di raccolta, indicizzazione e trasformazione della documentazione sui README in skill e agenti.
+
+## Ruolo
+
+- Esegue ricerche gofainder su documentazione README
+- Salva contenuti nella KB (`kb/`)
+- Esegue `nocodaigo explode` per creare snippet indicizzati
+- Esegue `godocai scan` per generare skill e agenti
+- Si ri-riavvia via meta-dev-kicker in loop autodeterminato
+
+## Standard ecosistema (inviolabili)
+
+1. **No Tailscale**
+2. **Rete** — bind `127.0.0.1:<porta>`; esporre solo via **aigoproxy** (`*.braigo.dev`)
+3. **Segreti** — **goleciave**; mai hardcodato
+4. **Cache** — **PebbleDB** pure Go; zero CGO
+5. **LLM** — **gogatewai**
+6. **Memoria** — mem0 locale `user_id=biodoia`
+7. **Commit** — granulari conventional
+8. **Conversazionale** — intent deterministici + fallback fuzzy
+
+## Path
+
+- **Path**: `/home/lisergico25/projects/readmago/agent/readmago-harvester`
+- **Modulo**: `github.com/bidoia/readmago/agent/readmago-harvester`

@@ -1,0 +1,15 @@
+# Configurazione meta-dev-kicker per readmago-harvester
+id: readmago-harvester
+default_agent: readmago-harvester
+data_dir: /home/lisergico25/projects/readmago/.metadev
+heartbeat_interval: 180s
+idle_after: 480s
+check_every: 60s
+min_kick_gap: 300s
+max_kicks_per_hour: 12
+backends:
+  - type: exec
+    command: /home/lisergico25/projects/readmago/scripts/harvest-loop.sh
+    cwd: /home/lisergico25/projects/readmago
+loop_commands:
+  - "/meta-dev LOOP harvest: gofainder search + extract + nocodaigo explode + godocai scan su readmago KB"
