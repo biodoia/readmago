@@ -1,3 +1,6 @@
+// Package main implements the readmago-mago agent: an HTTP server that
+// orchestrates README generation and linting for the readmago project.
+// It binds only on 127.0.0.1 (loopback) and exposes public routes via aigoproxy.
 package main
 
 import (

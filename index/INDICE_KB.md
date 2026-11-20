@@ -3,68 +3,41 @@
 **Progetto:** readmago — il mago dei README di GitHub  
 **Path:** `/home/lisergico25/projects/readmago/`  
 **Data:** 2026-11-20  
-**Stato:** Struttura completa — skill, agenti, KB, meta-dev-kicker configurati
+**Stato:** Struttura completa — skill, agenti, KB, meta-dev-kicker configurati. Trascrizione YouTube completata.
 
 ## Struttura progetto
 
 ```
 readmago/
-├── README.md                      # Presentazione progetto
-├── AGENTS.md                      # Regole operative agenti (anti-pattern register)
-├── QWEN.md                        # Vincoli progetto per coding agent
-├── LICENSE                        # MIT
-├── agent-card.json                # Carta agente readmago
-├── go.mod                         # Modulo github.com/bidoia/readmago
-├── .gitignore                     # Standard Go
-│
-├── kb/                            # Knowledge Base (raccolta documentazione)
-│   ├── github-docs/               # Documentazione ufficiale GitHub
+├── README.md, AGENTS.md, QWEN.md, LICENSE (MIT), agent-card.json, go.mod, .gitignore
+├── kb/                          # Knowledge Base (documentazione raccolta)
+│   ├── github-docs/
 │   │   ├── github-education-readme-guide.md
 │   │   ├── awesome-readme-matiassingers.md
 │   │   ├── awesome-readme-matiassingers-full.json
 │   │   └── github-education-full.json
-│   ├── forum-siti-specializzati/  # Consigli da forum e siti
+│   ├── forum-siti-specializzati/
 │   │   ├── freecodecamp-readme-italiano.md
 │   │   └── freecodecamp-readme-full.json
-│   ├── youtube-trascrizioni/      # Trascrizioni video YouTube (da trascrivere)
-│   │   └── how-to-design-professional-readme.md
-│   └── esempi-readme-perfetti/    # Esempi README eccellenti
+│   ├── youtube-trascrizioni/
+│   │   ├── how-to-design-professional-readme.md
+│   │   ├── audio/zm5P1Y59WGk.wav
+│   │   └── trascrizione-zm5P1Y59WGk.md   ← TRASCRIZIONE COMPLETATA
+│   └── esempi-readme-perfetti/
 │       └── migliori-esempi-2024-2025.md
-│
-├── index/                         # Indice e catalogo
-│   └── INDICE_KB.md
-│
-├── catalog/                       # Output nocodaigo (snippet indicizzati)
+├── index/INDICE_KB.md
+├── catalog/                     # Output nocodaigo (snippet indicizzati)
 │   └── snippets/
-│
-├── skill/                         # Skill specifiche
-│   ├── readme-gen/SKILL.md        # Generatore README
-│   ├── readme-lint/SKILL.md       # Linter conformità
-│   └── readme-harvest/SKILL.md    # Raccolta documentazione pipeline
-│
-├── agent/                         # Agenti
-│   ├── readmago-mago/             # Agente orchestrator (porta 8766)
-│   │   ├── AGENTS.md
-│   │   ├── agent-card.json
-│   │   ├── go.mod
-│   │   ├── README.md
-│   │   ├── main.go
-│   │   └── main_test.go
-│   └── readmago-harvester/        # Agente harvester (porta 8767)
-│       ├── AGENTS.md
-│       ├── agent-card.json
-│       ├── go.mod
-│       ├── README.md
-│       ├── main.go
-│       └── main_test.go
-│
-├── configs/                       # Configurazioni
-│   └── meta-dev-kicker.yaml       # Config loop autodeterminato
-│
-├── scripts/                       # Script operativi
-│   └── harvest-loop.sh            # Ciclo harvest (gofainder→nocodaigo→godocai)
-│
-└── tmp/                           # File temporanei
+├── skill/                       # 3 skill
+│   ├── readme-gen/SKILL.md
+│   ├── readme-lint/SKILL.md
+│   └── readme-harvest/SKILL.md
+├── agent/                       # 2 agenti (compilabili, test verdi)
+│   ├── readmago-mago/           # Porta 8766 — orchestrator
+│   └── readmago-harvester/      # Porta 8767 — harvester
+├── configs/meta-dev-kicker.yaml
+├── scripts/harvest-loop.sh
+└── tmp/
 ```
 
 ## Fonti raccolte (14+ corroborate)
@@ -73,7 +46,7 @@ readmago/
 |-------|------|-----|--------|
 | GitHub Education | Documentazione ufficiale | https://education.github.com/ | ✅ Estratto + JSON |
 | awesome-readme (matiassingers) | Repository curato | https://github.com/matiassingers/awesome-readme | ✅ Metadati + JSON |
-| YouTube tutorial README | Video (16:29) | https://www.youtube.com/watch?v=zm5P1Y59WGk | ⚠️ Da trascrivere (yt-dlp mancante) |
+| YouTube tutorial README | Video (16:29) + TRASCRIZIONE | https://www.youtube.com/watch?v=zm5P1Y59WGk | ✅ Trascrizione completata (faster-whisper) |
 | freeCodeCamp (IT) | Articolo specializzato | https://www.freecodecamp.org/italian/news/... | ✅ Estratto + JSON |
 | Reddit r/markdown | Community forum | https://www.reddit.com/r/markdown/ | ✅ Riferito |
 | awesome-beginner-projects | Esempio README | https://github.com/valentinmiklos/awesome-beginner-projects | ✅ Citato |
@@ -105,8 +78,8 @@ readmago/
 
 ## Prossimi passi (da eseguire in loop meta-dev)
 
-1. Installare yt-dlp e trascrivere il video YouTube (faster-whisper in CereBro/speech/)
-2. Eseguire `gofainder extract` sugli URL degli esempi README perfetti (Tauri, LangChain, Starknet.js)
+1. ✅ Installare yt-dlp — FATTO
+2. ✅ Trascrizione YouTube — FATTO (faster-whisper base, int8, italiano)
 3. Eseguire `nocodaigo explode` sulla KB per creare snippet indicizzati
 4. Eseguire `godocai scan` per generare documentazione skill/agenti
 5. Avviare meta-dev-kicker per il loop continuo

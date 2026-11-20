@@ -1,3 +1,7 @@
+// Package main implements the readmago-harvester agent: an HTTP server that
+// runs the documentation harvest pipeline (gofainder -> nocodaigo -> godocai)
+// for the readmago knowledge base.
+// It binds only on 127.0.0.1 (loopback) and exposes public routes via aigoproxy.
 package main
 
 import (

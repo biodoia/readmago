@@ -43,3 +43,8 @@ tmp/
 /readmago
 /agent/*/readmago-mago
 /agent/*/readmago-harvester
+
+# Audio trascrizioni (file binari grandi, non da committare)
+kb/youtube-trascrizioni/audio/*.wav
+kb/youtube-trascrizioni/audio/*.webm
+kb/youtube-trascrizioni/audio/*.mp3

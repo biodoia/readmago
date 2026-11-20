@@ -5,15 +5,22 @@
 **Tipo:** Video tutorial YouTube
 **Data raccolta:** 2026-11-20
 **Motore:** gofainder (engine: duckduckgo, brave)
-**Stato trascrizione:** ⚠️ yt-dlp non disponibile — trascrizione vocale da estrarre con CereBro/faster-whisper o tool equivalente
+**Stato trascrizione:** ✅ Completata con faster-whisper base (int8)
 
-## Sintesi dai metadati estratti
+## Trascrizione completa
 
-Tutorial passo-passo per principianti su come progettare un file README.md professionale e accattivante per GitHub. Il video mostra come creare un README "da pro" con elementi visivi e strutturali.
+Vedi [`trascrizione-zm5P1Y59WGk.md`](trascrizione-zm5P1Y59WGk.md) (20+ segmenti, ~2 minuti di audio, lingua italiana rilevata con probabilità 1.00).
 
-## Azioni necessarie per trascrizione completa
+### Principi chiave estratti
 
-1. Installare yt-dlp (o equivalente) per scaricare l'audio
-2. Usare faster-whisper (disponibile in /home/lisergico25/projects/CereBro/speech/) per trascrivere
-3. Salvare la trascrizione completa in `kb/youtube-trascrizioni/`
-4. Indicizzare i concetti chiave nell'indice di readmago
+- Il README è la prima cosa che i visitatori vedono di un repository
+- Deve spiegare: cosa fa il progetto, come installarlo, cosa fa
+- Si crea su GitHub.com dopo il login, nel repository di destinazione
+- Usa il nome di default `readme.md` (GitHub lo visualizza automaticamente nella pagina principale)
+- Struttura: nome progetto, descrizione breve, feature chiave, tecnologie usate, istruzioni di installazione
+- Usa markdown per organizzare i contenuti e renderli facili da leggere
+
+## Azioni necessarie per approfondire
+
+1. Estrarre i concetti chiave dalla trascrizione completa e aggiungerli all'indice KB
+2. Usare questi principi nella skill `readme-gen`
