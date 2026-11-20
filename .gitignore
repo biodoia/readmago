@@ -48,3 +48,6 @@ tmp/
 kb/youtube-trascrizioni/audio/*.wav
 kb/youtube-trascrizioni/audio/*.webm
 kb/youtube-trascrizioni/audio/*.mp3
+
+# Database PebbleDB (nocodaigo output - non da committare)
+catalog/snippets/db/
