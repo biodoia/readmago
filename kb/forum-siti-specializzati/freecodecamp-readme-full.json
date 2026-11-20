@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        
+            <title>Come scrivere un buon file README per i tuoi progetti GitHub</title>
+        
+        <meta name="HandheldFriendly" content="True">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+            (function() {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark-mode');
+                }
+            })();
+        </script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+        
+
+        
+        
+    <link id="prism-theme-light" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css">
+<noscript>
+  <link rel="stylesheet" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css">
+</noscript>
+<link id="prism-theme-dark" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism-dark.min.css">
+<noscript>
+  <link rel="stylesheet" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism-dark.min.css">
+</noscript>
+<script>
+  (function() {
+    var isDark = document.documentElement.classList.contains('dark-mode');
+    var light = document.getElementById('prism-theme-light');
+    var dark = document.getElementById('prism-theme-dark');
+    if (isDark) {
+      light.disabled = true;
+    } else {
+      dark.disabled = true;
+    }
+  })();
+</script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css">
+<noscript>
+  <link rel="stylesheet" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css">
+</noscript>
+
+<script defer="" src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/components/prism-core.min.js"></script>
+<script defer="" src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+        
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/solid.min.css">
+
+        
+        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/italian/news/assets/css/global-f141287a91.css">
+        <link rel="stylesheet" type="text/css" href="/italian/news/assets/css/variables-54e5c7c52a.css">
+        <link rel="stylesheet" type="text/css" href="/italian/news/assets/css/print-118c07de60.css">
+        <link rel="stylesheet" type="text/css" href="/italian/news/assets/css/screen-2818957cf6.css">
+        <link rel="stylesheet" type="text/css" href="/italian/news/assets/css/search-bar-beba8d2b76.css">
+
+        
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/algolia/algoliasearch/5.46.3/lite/browser.umd.js"></script>
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/algolia/autocomplete/1.19.4/index.production.min.js"></script>
+
+        
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/dayjs.min.js"></script>
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/localizedFormat.min.js"></script>
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/relativeTime.min.js"></script>
+
+        
+        
+            <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/locale/it.min.js"></script>
+        
+
+        
+        <script>document.addEventListener("DOMContentLoaded",async()=>{const{liteClient:e}=window["algoliasearch/lite"],{autocomplete:t,getAlgoliaResults:n}=window["@algolia/autocomplete-js"],a=e("QMJYL5WYTI","89770b24481654192d7a5c402c6ad9a0"),s=window.screen.width>=767&&window.screen.height>=768?8:5,o=((e,t)=>{let n;return(...a)=>(n&&clearTimeout(n),new Promise(s=>{n=setTimeout(()=>s(e(...a)),t)}))})(e=>Promise.resolve(e),200),i=e=>t({container:e,panelContainer:e,stallThreshold:500,detachedMediaQuery:"none",debug:!0,placeholder:Number("400")<100?"Search our news articles, tutorials, and books":"Search 400+ news articles, tutorials, and books",getSources:()=>o([{sourceId:"links",getItemUrl:({item:e})=>e.url,getItems:({query:e})=>n({searchClient:a,queries:[{indexName:"news-it",params:{query:e,hitsPerPage:s}}]}),templates:{item:({item:e,components:t,html:n})=>n`<a class="aa-ItemLink" href=${e.url}>
+                  <div class="aa-ItemContent">
+                    <div class="aa-ItemContentBody">
+                      <div class="aa-ItemContentTitle">
+                        ${t.Highlight({hit:e,attribute:"title",tagName:"mark"})}
+                      </div>
+                    </div>
+                  </div>
+                </a>`,footer({state:e,html:t}){const n=e?.query,a=e?.collections[0]?.items;if(a.length)return t`<a
+                    class="aa-ItemLink"
+                    href="https://www.freecodecamp.org/italian/news/search?query=${n}"
+                    ><div class="aa-ItemContent">
+                      Vedi tutti i risultati per ${n}
+                    </div></a
+                  >`},noResults:()=>"No results found"}}])}),r=i("#nav-left-search-container");i("#nav-right-search-container");const d=document.querySelectorAll(".fcc-search-container");document.addEventListener("keydown",e=>{e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement||e.target.isContentEditable||"/"!==e.key&&"s"!==e.key||(e.preventDefault(),d.forEach(e=>{e.checkVisibility()&&e.querySelector("input").focus()}))}),d.forEach(e=>{e.addEventListener("submit",t=>{t.preventDefault();const n=e.querySelector("input").value.trim(),a=e.querySelector(".aa-List");n&&a&&window.location.assign(`https://www.freecodecamp.org/italian/news/search?query=${n}`)})}),document.addEventListener("click",e=>{e.target!==document.querySelector("#nav-left-search-container .aa-Form")&&r.setIsOpen(!1)})}),document.addEventListener("DOMContentLoaded",()=>{dayjs.extend(dayjs_plugin_localizedFormat),dayjs.extend(dayjs_plugin_relativeTime),dayjs.locale("it")});const isAuthenticated=document.cookie.split(";").some(e=>e.trim().startsWith("jwt_access_token=")),isDonor=document.cookie.split(";").some(e=>e.trim().startsWith("isDonor=true"));document.addEventListener("DOMContentLoaded",()=>{const e=[{button:document.getElementById("toggle-lang-button"),menu:document.getElementById("lang-dropdown")},{button:document.getElementById("toggle-menu-button"),menu:document.getElementById("menu-dropdown")}].filter(e=>e.button&&e.menu),t=({button:e,menu:t})=>{t.classList.remove("display-menu"),e.ariaExpanded="false"};e.forEach(n=>{n.button.addEventListener("click",()=>{const a=n.menu.classList.contains("display-menu");e.forEach(t),a||(({button:e,menu:t})=>{t.classList.add("display-menu"),e.ariaExpanded="true"})(n)})}),document.addEventListener("click",n=>{e.forEach(e=>{!e.menu.classList.contains("display-menu")||e.button.contains(n.target)||e.menu.contains(n.target)||t(e)})}),document.addEventListener("focusout",n=>{const a=n.relatedTarget;a&&e.forEach(e=>{!e.menu.classList.contains("display-menu")||e.button.contains(a)||e.menu.contains(a)||t(e)})}),document.addEventListener("keydown",n=>{"Escape"===n.key&&e.forEach(e=>{e.menu.classList.contains("display-menu")&&(t(e),e.button.focus())})})}),document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("toggle-dark-mode");if(!e)return;const t=e.querySelector("i"),n=document.getElementById("prism-theme-light"),a=document.getElementById("prism-theme-dark"),s=e=>{t&&(t.classList.toggle("fa-square-check",e),t.classList.toggle("fa-square",!e))},o=e=>{n&&(n.disabled=e),a&&(a.disabled=!e)},i=(t,{persist:n=!0}={})=>{document.documentElement.classList.toggle("dark-mode",t),e.setAttribute("aria-pressed",String(t)),s(t),o(t),n&&localStorage.setItem("theme",t?"dark":"light")},r=document.documentElement.classList.contains("dark-mode");e.setAttribute("aria-pressed",String(r)),s(r),o(r),e.addEventListener("click",()=>{const e=!document.documentElement.classList.contains("dark-mode");i(e)});const d=window.matchMedia("(prefers-color-scheme: dark)"),c=e=>{localStorage.getItem("theme")||i(e.matches,{persist:!1})};"function"==typeof d.addEventListener?d.addEventListener("change",c):"function"==typeof d.addListener&&d.addListener(c)});</script>
+
+        
+            <script src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous" async=""></script>
+        
+
+        
+        
+    
+        
+            <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var sidebar = document.querySelector('.sidebar');
+    var isSideBarDisplayed = window.getComputedStyle(sidebar).display !== 'none';
+    function prepareAdSlot(elementId) {
+        // Get the element by ID
+        const targetElement = document.getElementById(elementId);
+
+        // Ensure the element exists before proceeding
+        if (!targetElement) {
+            console.error(`Element with ID ${elementId} not found`);
+            return;
+        }
+
+        const parentElement = targetElement.parentElement;
+        // Change the background color of the parent element
+
+        if (parentElement) {
+            console.log(elementId)
+
+            if (elementId === 'gam-ad-bottom' ) {
+                parentElement.style.backgroundColor = '#eeeef0';
+                if(getComputedStyle(parentElement).visibility === 'hidden') {
+                    parentElement.style.visibility = 'inherit'; 
+                }
+            }
+
+            // Get the sibling elements
+            const siblingElements = parentElement.children;
+
+            for (let i = 0; i < siblingElements.length; i++) {
+                const sibling = siblingElements[i];
+
+                // Skip the element itself
+                if (sibling === targetElement) continue;
+
+                // Log the sibling or perform any other action
+                console.log('Found sibling:', sibling);
+
+                // Check visibility
+                if(getComputedStyle(sibling).visibility === 'hidden') {
+                    sibling.style.visibility = 'inherit'; 
+                }
+
+                // Check if display is 'none', then change it to 'block'
+                if (getComputedStyle(sibling).display === 'none') {
+                    sibling.style.display = 'block'; 
+                }
+            }
+        } else {
+            console.warn('No parent element found');
+        }
+    }
+
+    
+    window.googletag = window.googletag || {cmd: []};
+    googletag.cmd.push(function() {
+
+        if(isSideBarDisplayed){
+            var sidebarHeight = sidebar.offsetHeight;
+            var adTextSideBarHeight = 0;
+            var sideBarAdContainert = 600 + 17;
+        
+            var styles = window.getComputedStyle(sidebar);
+            var avaiableSideAdSpace = sidebarHeight - adTextSideBarHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
+            var numSideElements = Math.floor(avaiableSideAdSpace / sideBarAdContainert);
+            for (var i = 0; i < numSideElements; i++) {
+                // container element
+                var containerElement = document.createElement('div');
+                containerElement.classList.add('ad-wrapper');
+
+                //text element
+                var textElement = document.createElement('div');
+                textElement.classList.add('ad-text');
+                textElement.innerText = localizedAdText;
+
+                // ad element
+                var adElement = document.createElement('div');
+                var sideAdElementId = 'side-gam-ad-' + i;
+                adElement.id = sideAdElementId;
+                adElement.classList.add('side-bar-ad-slot');
+
+                // finalize setup
+                containerElement.appendChild(textElement);
+                containerElement.appendChild(adElement);
+                sidebar.appendChild(containerElement);
+                googletag.defineSlot('/23075930536/post-side', [[292, 30], [240, 400], [300, 75], [216, 54], [250, 360], [300, 50], 'fluid', [300, 31], [120, 20], [300, 250], [120, 30], [180, 150], [200, 446], [168, 42], [200, 200], [160, 600], [120, 90], [125, 125], [240, 133], [120, 60], [1, 1], [120, 240], [220, 90], [216, 36], [250, 250], [168, 28], [234, 60], [120, 600], [300, 600], [88, 31], [300, 100]], sideAdElementId).addService(googletag.pubads());
+            }
+        }
+
+        // Define bottom ad
+        googletag.defineSlot('/23075930536/post-bottom', ['fluid'], 'gam-ad-bottom').addService(googletag.pubads());
+
+        // Enable lazy loading with default settings.
+        googletag.pubads().enableLazyLoad();
+
+        googletag.pubads().addEventListener("slotRequested", (event) => {
+            console.log(`Slot ${event.slot.getSlotElementId()} fetched`);
+        });
+
+        googletag.pubads().addEventListener("slotOnload", (event) => {
+            const elementId = event.slot.getSlotElementId();
+            prepareAdSlot(elementId);
+            console.log(`Slot ${event.slot.getSlotElementId()} rendered`);
+        });
+
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+
+
+        // Trigger lazy loading
+        googletag.display('gam-ad-bottom');
+
+    });
+});
+</script>
+
+        
+    
+
+
+        
+            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5D6RKKP');</script>
+
+        
+
+        
+        
+    
+        
+    
+
+
+        
+        
+        
+
+        
+        
+
+        <link rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon.ico" type="image/png">
+        
+        
+            <link rel="canonical" href="https://www.freecodecamp.org/italian/news/come-scrivere-un-buon-file-readme-per-i-tuoi-progetti-github/">
+        
+        <meta name="referrer" content="no-referrer-when-downgrade">
+
+        
+
+        
+    <meta name="description" content="Quando sono stato introdotto a GitHub, non avevo idea di cosa fosse o cosa potesse fare. Detto tra noi, ho creato l&#39;account perché mi era stato detto che tutti gli sviluppatori ne dovrebbero avere uno sul quale pubblicare il proprio codice. Per la maggior parte del tempo da principiante non">
+
+    
+    <meta property="og:site_name" content="freeCodeCamp.org">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Come scrivere un buon file README per i tuoi progetti GitHub">
+    
+        <meta property="og:description" content="Quando sono stato introdotto a GitHub, non avevo idea di cosa fosse o cosa potesse fare. Detto tra noi, ho creato l&#39;account perché mi era stato detto che tutti gli sviluppatori ne dovrebbero avere uno sul quale pubblicare il proprio codice. Per la maggior parte del tempo da principiante non">
+    
+    <meta property="og:url" content="https://www.freecodecamp.org/italian/news/come-scrivere-un-buon-file-readme-per-i-tuoi-progetti-github/">
+    <meta property="og:image" content="https://www.freecodecamp.org/italian/news/content/images/2022/11/uide-to-writting-a-good-readme-file--1-.png">
+    <meta property="article:published_time" content="2022-11-23T05:30:00.000Z">
+    <meta property="article:modified_time" content="2022-12-06T13:42:13.000Z">
+    
+        <meta property="article:tag" content="GitHub">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Come scrivere un buon file README per i tuoi progetti GitHub">
+    
+        <meta name="twitter:description" content="Quando sono stato introdotto a GitHub, non avevo idea di cosa fosse o cosa potesse fare. Detto tra noi, ho creato l&#39;account perché mi era stato detto che tutti gli sviluppatori ne dovrebbero avere uno sul quale pubblicare il proprio codice. Per la maggior parte del tempo da principiante non">
+    
+    <meta name="twitter:url" content="https://www.freecodecamp.org/italian/news/come-scrivere-un-buon-file-readme-per-i-tuoi-progetti-github/">
+    <meta name="twitter:image" content="https://www.freecodecamp.org/italian/news/content/images/2022/11/uide-to-writting-a-good-readme-file--1-.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Tiziano Caruana">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="GitHub">
+    <meta name="twitter:site" content="@freeCodeCampIT">
+    
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+
+        
+    <script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"publisher": {
+		"@type": "Organization",
+		"name": "freeCodeCamp.org",
+		"url": "https://www.freecodecamp.org/italian/news/",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg",
+			"width": 2100,
+			"height": 240
+		}
+	},
+	"image": {
+		"@type": "ImageObject",
+		"url": "https://www.freecodecamp.org/italian/news/content/images/2022/11/uide-to-writting-a-good-readme-file--1-.png",
+		"width": 1200,
+		"height": 630
+	},
+	"url": "https://www.freecodecamp.org/italian/news/come-scrivere-un-buon-file-readme-per-i-tuoi-progetti-github/",
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": "https://www.freecodecamp.org/italian/news/"
+	},
+	"datePublished": "2022-11-23T05:30:00.000Z",
+	"dateModified": "2022-12-06T13:42:13.000Z",
+	"keywords": "GitHub",
+	"description": "Quando sono stato introdotto a GitHub, non avevo idea di cosa fosse o cosa\npotesse fare. Detto tra noi, ho creato l&#x27;account perché mi era stato detto che\ntutti gli sviluppatori ne dovrebbero avere uno sul quale pubblicare il proprio\ncodice.\n\nPer la maggior parte del tempo da principiante non ho fatto nulla col mio\naccount. Ma poi, grazie alla mia passione per tecnologia, ho iniziato a seguire\naltri sviluppatori e leggere i loro lavori su GitHub. E ho notato una cosa che\navevano in comune: avevan",
+	"headline": "Come scrivere un buon file README per i tuoi progetti GitHub",
+	"author": {
+		"@type": "Person",
+		"name": "Tiziano Caruana",
+		"url": "https://www.freecodecamp.org/italian/news/author/tiziano_caruana/",
+		"sameAs": [],
+		"image": {
+			"@type": "ImageObject",
+			"url": "https://www.freecodecamp.org/italian/news/content/images/2022/09/1655131659673.jpg",
+			"width": 355,
+			"height": 355
+		}
+	}
+}</script>
+
+
+        <meta name="generator" content="Eleventy">
+        <link rel="alternate" type="application/rss+xml" title="freeCodeCamp.org" href="https://www.freecodecamp.org/italian/news/rss/">
+
+        
+        <script>
+   const fccOriginalPost = "https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/";
+</script>
+
+        
+  <meta name="x-fcc-source" data-test-label="x-fcc-source" content="Ghost">
+
+    </head>
+
+    
+        <body class="home-template">
+    
+
+    
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D6RKKP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    
+
+        <div class="site-wrapper">
+            <nav class="site-nav nav-padding universal-nav">
+    <div class="site-nav-left">
+        <div id="nav-left-search-container" class="fcc-search-container" data-test-label="fcc-search-container"></div>
+    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/italian/news/" data-test-label="site-nav-logo"><img src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="freeCodeCamp.org"></a>
+    </div>
+    <div class="site-nav-right">
+        <button data-test-label="header-toggle-lang-button" id="toggle-lang-button" class="lang-button-nav" title="Change Language" aria-label="Change Language" aria-controls="lang-dropdown" aria-expanded="false">
+             <svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-test-label="globe-icon">
+      <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M13 2.04932C13 2.04932 16 5.99994 16 11.9999C16 17.9999 13 21.9506 13 21.9506" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M11 21.9506C11 21.9506 8 17.9999 8 11.9999C8 5.99994 11 2.04932 11 2.04932" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M2.62964 15.5H21.3704" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M2.62964 8.5H21.3704" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+
+        </button>
+            <ul data-test-label="header-lang-list" id="lang-dropdown" class="nav-list" aria-labelledby="toggle-lang-button">
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/news/" hreflang="en" lang="en">English</a>
+                    </li>
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/espanol/news/" hreflang="es" lang="es">Español</a>
+                    </li>
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/chinese/news/" hreflang="zh" lang="zh">中文（简体字）</a>
+                    </li>
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/italian/news/" hreflang="it" lang="it" aria-current="true">Italiano</a>
+                    </li>
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/portuguese/news/" hreflang="pt-BR" lang="pt-BR">Português</a>
+                    </li>
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/ukrainian/news/" hreflang="uk" lang="uk">Українська</a>
+                    </li>
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/japanese/news/" hreflang="ja" lang="ja">日本語</a>
+                    </li>
+                
+                    <li>
+                        <a data-test-label="header-lang-list-option" class="nav-link nav-lang-list-option" href="https://www.freecodecamp.org/korean/news/" hreflang="ko" lang="ko">한국어</a>
+                    </li>
+                
+            </ul>
+        <button aria-expanded="false" class="menu-button-nav" id="toggle-menu-button" data-test-label="header-menu-button" aria-label="Menu" aria-controls="menu-dropdown">
+            <span class="menu-btn-text">Menu</span>
+            <i class="fa-solid fa-bars menu-btn-icon" aria-hidden="true"></i>
+        </button>
+        <ul id="menu-dropdown" class="nav-list" aria-labelledby="toggle-menu-button" data-test-label="header-menu">
+            <li>
+                <div id="nav-right-search-container" class="fcc-search-container" data-test-label="fcc-search-container"></div>
+            </li>
+            <li><a class="nav-link nav-link-flex" id="nav-forum" rel="noopener noreferrer" href="https://forum.freecodecamp.org/c/italiano/535" target="_blank" data-test-label="forum-button">Forum</a></li>
+            <li><a class="nav-link nav-link-flex" id="nav-learn" rel="noopener noreferrer" href="https://www.freecodecamp.org/italian/learn" target="_blank" data-test-label="learn-button">Curriculum</a></li>
+        <li><button class="nav-link nav-link-flex" id="toggle-dark-mode" aria-pressed="false" data-test-label="dark-mode-button">
+        <span>Night Mode</span><i class="fa-regular fa-square-check" aria-hidden="true"></i></button></li>
+        </ul>
+        <a class="donate-button-nav" id="nav-donate" rel="noopener noreferrer" href="https://www.freecodecamp.org/italian/donate" target="_blank" data-test-label="donate-button">Dona</a>
+    </div>
+</nav>
+
+
+            
+            <a class="banner" id="banner" data-test-label="banner" rel="noopener noreferrer" target="_blank">
+    <p id="banner-text"></p>
+</a>
+
+
+    
+    <script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("banner"),t=document.getElementById("banner-text");if(isAuthenticated){t.innerHTML=isDonor?"Grazie per supportare freeCodeCamp con le <span>tue donazioni</span>.":"Supporta la nostra charity e la nostra missione. <span>Dona a freeCodeCamp.org</span>.",e.href=isDonor?"https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/":"https://www.freecodecamp.org/italian/donate";const n=isDonor?"donor":"authenticated";e.setAttribute("text-variation",n)}else t.innerHTML="Learn Software Engineering Fundamentals – <span>Try Our FREE Curriculum</span>",e.href="https://forum.freecodecamp.org/t/contribuire-a-tradurre-freecodecamp-in-italiano/479009/",e.setAttribute("text-variation","default")});</script>
+
+
+            <div id="error-message"></div>
+
+            
+    <main id="site-main" class="post-template site-main outer">
+        <div class="inner ad-layout">
+            <article class="post-full post">
+                <header class="post-full-header">
+                    <section class="post-full-meta">
+                        <time class="post-full-meta-date" data-test-label="post-full-meta-date" datetime="Wed Nov 23 2022 05:30:00 GMT+0000 (Coordinated Universal Time)">
+                            November 23, 2022
+                        </time>
+                        
+                            <span class="date-divider">/</span>
+                            <a dir="ltr" href="/italian/news/tag/github/">
+                                #GitHub
+                            </a>
+                        
+                    </section>
+                    <h1 class="post-full-title" data-test-label="post-full-title">Come scrivere un buon file README per i tuoi progetti GitHub</h1>
+                </header>
+                
+                    <div class="post-full-author-header" data-test-label="author-header-no-bio">
+                        
+                            
+    
+    
+    
+
+    <section class="author-card" data-test-label="translator-card">
+        
+            
+    <img srcset="https://www.freecodecamp.org/italian/news/content/images/size/w60/2022/09/1655131659673.jpg 60w" sizes="60px" src="https://www.freecodecamp.org/italian/news/content/images/size/w60/2022/09/1655131659673.jpg" class="author-profile-image" alt="Tiziano Caruana" width="355" height="355" onerror="this.style.display='none'" data-test-label="profile-image">
+  
+        
+
+        <section class="author-card-content author-card-content-no-bio">
+            <span class="author-card-name">
+                <a href="/italian/news/author/tiziano_caruana/" data-test-label="profile-link">
+                    
+                        Traduttore: Tiziano Caruana
+                    
+                </a>
+            </span>
+            
+        </section>
+    </section>
+
+                            
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img srcset="https://cdn.hashnode.com/res/hashnode/image/upload/v1682063745392/sf6GpqiCg.png 60w" sizes="60px" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1682063745392/sf6GpqiCg.png" class="author-profile-image" alt="Hillary Nyakundi" width="1000" height="1000" onerror="this.style.display='none'" data-test-label="profile-image">
+  
+        
+
+        <section class="author-card-content author-card-content-no-bio">
+            <span class="author-card-name">
+                <a href="https://www.freecodecamp.org/news/author/larymak/" data-test-label="profile-link">
+                    
+                        Autore: Hillary Nyakundi (inglese)
+                    
+                </a>
+            </span>
+            
+        </section>
+    </section>
+
+                        
+                    </div>
+                
+                <figure class="post-full-image">
+                    
+    <picture>
+      <source media="(max-width: 700px)" sizes="1px" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w">
+      <source media="(min-width: 701px)" sizes="(max-width: 800px) 400px, (max-width: 1170px) 700px, 1400px" srcset="https://www.freecodecamp.org/italian/news/content/images/size/w300/2022/11/uide-to-writting-a-good-readme-file--1-.png 300w, https://www.freecodecamp.org/italian/news/content/images/size/w600/2022/11/uide-to-writting-a-good-readme-file--1-.png 600w, https://www.freecodecamp.org/italian/news/content/images/size/w1000/2022/11/uide-to-writting-a-good-readme-file--1-.png 1000w, https://www.freecodecamp.org/italian/news/content/images/size/w2000/2022/11/uide-to-writting-a-good-readme-file--1-.png 2000w">
+      <img onerror="this.style.display='none'" src="https://www.freecodecamp.org/italian/news/content/images/size/w2000/2022/11/uide-to-writting-a-good-readme-file--1-.png" alt="Come scrivere un buon file README per i tuoi progetti GitHub" ,="" width="1200" height="630" data-test-label="feature-image">
+    </picture>
+  
+                </figure>
+                <section class="post-full-content">
+                    <div class="post-and-sidebar">
+                        <section class="post-content " data-test-label="post-content">
+                            
+<p data-test-label="translation-intro">
+        <strong>Articolo originale:</strong> <a href="https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/" target="_blank" rel="noopener noreferrer" data-test-label="original-article-link">How to Write a Good README File for Your GitHub Project</a>
+      </p><p>Quando sono stato introdotto a GitHub, non avevo idea di cosa fosse o cosa potesse fare. Detto tra noi, ho creato l'account perché mi era stato detto che tutti gli sviluppatori ne dovrebbero avere uno sul quale pubblicare il proprio codice.</p><p>Per la maggior parte del tempo da principiante non ho fatto nulla col mio account. Ma poi, grazie alla mia passione per tecnologia, ho iniziato a seguire altri sviluppatori e leggere i loro lavori su GitHub. E ho notato una cosa che avevano in comune: avevano tutti progetti interessanti e contribuivano a progetti open source, ma i loro progetti avevano anche dei <strong>file R<strong>EADME</strong> </strong>dettagliati.</p><p>Quindi il mio interesse in cosa fosse un README era cresciuto, e ho deciso di provare ad aggiungerne uno ai miei progetti. Non mentirò - l'ho fatto di corsa senza alcuna idea su come dovesse essere fatto. E onestamente il risultato non era granché. <a href="https://github.com/larymak/ToDo-list-App/tree/v1.0">Guarda tu stesso</a>.</p><p>Ed è rimasto così per un periodo di tempo. Ma grazie alla pratica e all'apprendimento continuo ho imparato a realizzare migliori documentazioni come <a href="https://github.com/DjangoGirls/tutorial/blob/master/it/deploy/README.md">QUESTA</a>, il che ha migliorato la partecipazione con i progetti e ha aiutato altri sviluppatori a unirsi.</p><p>É anche importante sapere che un buon README ti aiuterà a farti notare in mezzo alla moltitudine di sviluppatori che pubblicano il loro lavoro su GitHub.</p><p>In questo articolo, impareremo cos'é un file README e come scriverne uno. Prima di tutto capiamo cosa si intende per "file README".</p><h2 id="cos-un-file-readme"><strong>Cos'é un file README?</strong></h2><p>In parole povere, possiamo definire un file README come una guida che dà a un utente una descrizione dettagliata di un progetto sul quale hai lavorato.</p><p>Può essere anche descritto come una documentazione con linee guida su come usare un progetto. Di solito contiene istruzioni su come installare ed eseguire un progetto.</p><p>É essenziale per te come sviluppatore sapere come documentare il tuo progetto scrivendo un README perché:</p><ul><li>É il primo file che una persona vedrà aprendo il tuo progetto, quindi dovrebbe essere piuttosto sintetico ma dettagliato.</li><li>Farà spiccare il tuo progetto tra gli altri. Ma assicurati che il progetto sia buono.</li><li>Ti aiuterà a definire cosa deve offrire il tuo progetto e come.</li><li>Migliorerà le tue abilità di scrittura, come disse Friedrich Nietzsche:</li></ul><blockquote><em>Un bravo scrittore non possiede solamente il suo spirito, ma anche lo spirito dei suoi amici.</em></blockquote><p>Mentre lavori a un progetto, tieni a mente che dovrai far capire cosa fa il tuo codice anche ad altri sviluppatori. Quindi affiancargli una guida sarà decisamente utile.</p><p>Ad esempio, il mio <a href="https://github.com/larymak/ToDo-list-App/tree/v1.0">primo progetto</a> mostrato in precedenza, non ha un buon README. E anche se il progetto era fantastico, sarebbe stato difficile per un principiante capire esattamente cosa aspettarsi quando avrebbero clonato il mio repo. Per lui sarebbe anche potuto essere un virus.</p><p>Con un progetto del genere su GitHub, non importa quanto sia ben fatto, gli altri sviluppatori non saranno disposti a capirlo e a lavorarci senza un buon README.</p><p>Ora, dai un'occhiata a questo <a href="https://github.com/larymak/Html-Css-Recap">progetto</a>. Qui, sei in grado di capire cosa fa il progetto, cosa prevede e come iniziare se hai bisogno di usare o contribuire al progetto.</p><p>Vedi, ecco quanto può essere utile un README ben strutturato e come può cambiare il tuo progetto.</p><p>Quindi, iniziamo a vedere come puoi scriverne uno.</p><h2 id="come-scrivere-un-buon-readme-una-guida-passo-passo"><strong>Come scrivere un buon README - una guida passo passo</strong></h2><p>Una cosa importante da sapere è che non c'è un modo migliore per strutturare un buon README. Ma c'è un modo sbagliatissimo, ed è non scriverlo affatto.</p><p>Studiando vari file README, naturalmente ho delle buone pratiche. E sono proprio queste che condividerò. Come dico sempre:</p><blockquote><em>Ogni giorno è un giorno in cui imparare<em>.</em></em></blockquote><p>Quindi andando avanti e progredendo nella tua carriera, svilupperai le tue idee su cosa rende ben strutturato un README e come migliorarlo. Magari un giorno scriverai una tua guida originale.</p><p>Prima di iniziare, è anche importante sapere che, quando scrivi il tuo README, dovresti essere in grado di rispondere al <strong>cosa</strong>, al <strong>perché</strong>, e al <strong>come </strong>del progetto.</p><p>Ecco qualche domanda che ti aiuterà:</p><ul><li>Qual è la tua motivazione?</li><li>Perché hai creato questo progetto?</li><li>Quale problema risolve?</li><li>Cosa hai imparato?</li><li>Cosa lo differenzia dagli altri?<br>Se il tuo progetto ha molte funzionalità, considera l'aggiunta di una sezione "Features" nella quale elencarle.</li></ul><h2 id="cosa-includere-nel-tuo-readme"><strong>Cosa includere nel tuo README</strong></h2><h3 id="1-titolo-del-progetto"><strong>1. Titolo del progetto</strong></h3><p>Questo è il nome del progetto. Descrive tutto il progetto in una frase e aiuta le persone a capire qual è<strong> </strong>l'obiettivo, ovvero a <strong>cosa </strong>punta il progetto.</p><h3 id="2-descrizione-del-progetto"><strong>2. Descrizione del progetto</strong></h3><p>Questa è una componente importante del progetto che molti sviluppatori inesperti tendono a sottovalutare.</p><p>La descrizione è un aspetto estremamente importante del tuo progetto. Una descrizione ben fatta ti permette di mostrare il tuo lavoro ad altri sviluppatori e a potenziali datori di lavoro.</p><p>La qualità di un buona descrizione è spesso la differenza tra un buon progetto ed un progetto carente. Uno buon README sfrutta la possibilità per spiegare e mostrare:</p><ul><li>Cosa fa la tua applicazione,</li><li>Perché hai utilizzato determinate tecnologie,</li><li>Alcune delle difficoltà che hai affrontato e le funzionalità che speri di aggiungere in futuro.</li></ul><h3 id="3-indice-facoltativo-"><strong>3. Indice (facoltativo)</strong></h3><p>Se il tuo README è molto lungo, forse è il caso di aggiungere un indice per rendere più semplice la navigazione tra le sezioni.</p><h3 id="4-come-installare-ed-eseguire-il-progetto"><strong>4. Come installare ed eseguire il progetto</strong></h3><p>Se stai lavorando su un progetto che l'utente deve installare o eseguire in locale in una macchina come un "POS", dovresti includere i passaggi per installare il tuo progetto ed anche le dipendenze, se ci sono.</p><p>Metti a disposizione una descrizione passo passo di come creare ed eseguire l'ambiente di sviluppo.</p><h3 id="5-come-usare-il-progetto"><strong>5. Come usare il progetto</strong></h3><p>Fornisci istruzioni ed esempi a utenti e collaboratori. Semplificherà loro la vita quando avranno un problema - avranno sempre un posto dove trovare cosa aspettarsi.</p><p>Puoi anche usare supporti visivi includendo materiale come screenshot per mostrare esempi del progetto in esecuzione o per mostrare la struttura e i principi di design usati nel tuo progetto.</p><p>Se il tuo progetto richiede autenticazioni come password e username, questa è una buona sezione nella quale includere le credenziali.</p><h3 id="6-includi-i-ringraziamenti-riferimenti"><strong>6. Includi i ringraziamenti/riferimenti</strong></h3><p>Se hai lavorato su un progetto con un team o un'organizzazione, elenca i tuoi collaboratori/compagni di squadra. Dovresti anche includere un link al loro profilo GitHub e/o ai loro social media.</p><p>Inoltre, se hai seguito tutorial o fatto riferimento ad alcuni materiali che potrebbero aiutare l'utente a costruire un particolare progetto, includi i link.</p><p>Questo è uno dei modi ringraziare ed aiutare gli altri a mettere mano su progetti simili.</p><h3 id="7-aggiungi-una-licenza"><strong>7. Aggiungi una licenza</strong></h3><p>Per la maggior parte dei file README, questo è solitamente considerata la parte finale. Permette agli altri sviluppatori di sapere cosa possono e non possono fare con il tuo progetto.</p><p>Esistono tipi di licenza diversi a seconda del tipo di progetto sul quale stai lavorando. A seconda di quella che sceglierai riceverai diversi tipi di contributi.</p><p>La più comune è la Licenza GPL che permette agli altri di modificare il tuo codice ed usarlo a scopi commerciali. Se hai bisogno di aiuto nello scegliere una licenza, dai un'occhiata a questo sito: <a href="https://choosealicense.com/">https://choosealicense.com/</a> (risorsa in lingua originale inglese).</p><p>Fino a questo punto abbiamo soddisfatto i requisiti minimi per un buon README. Ma potresti anche voler considerare di aggiungere le seguenti sezioni per renderlo più interattivo e accattivante.</p><h2 id="sezioni-readme-aggiuntive"><strong>Sezioni README aggiuntive</strong></h2><h3 id="8-badge"><strong>8. Badge</strong></h3><p>I badge non sono necessari, ma usarli è un modo semplice di far sapere agli altri sviluppatori che sai cosa stai facendo.</p><p>Avere questa sezione potrebbe anche essere utile per aiutare a linkare i tool più importanti e mostrare qualche statistica riguardante il tuo progetto come il numero di fork, collaboratori, issue aperte ecc.</p><p>Ecco uno screenshot di uno dei miei progetti che mostra come poter utilizzare i badge:</p><figure class="kg-card kg-image-card"><img src="https://www.freecodecamp.org/news/content/images/2021/11/check.png" class="kg-image" alt="badges" width="600" height="400" loading="lazy"></figure><p>Un lato positivo di questa sezione è che si aggiorna automaticamente.</p><p>Non sai da dove iniziare? Dai un'occhiata ai badge di <a href="https://shields.io/">shields.io</a>. Hanno un sacco di badge che possono aiutarti a iniziare. Potresti non capirli tutti, ma piano piano inizierai a riuscirci.</p><h3 id="9-come-contribuire-al-progetto"><strong>9. Come contribuire al progetto</strong></h3><p>Questo sarà utile soprattutto se stai sviluppando un progetto open-source nel quale avrai bisogno del contributo di altri sviluppatori. Dovrai aggiungere delle linee guida per far sapere loro come contribuire al tuo progetto.</p><p>É importante anche assicurarsi che la licenza che scegli per un progetto open-source sia corretta per evitare conflitti futuri. E l'aggiunta di linee guida ai contributi giocherà un ruolo importante.</p><p>Alcune delle linee guida più comuni includono il <a href="https://www.contributor-covenant.org/it/version/2/0/code_of_conduct/code_of_conduct.md">codice di comportamento del collaboratore</a> e la <a href="https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors">guida alla contribuzione</a>. Queste documentazioni ti daranno il supporto che ti serve quando imposterai le regole del tuo progetto.</p><h3 id="10-includi-i-test"><strong>10. Includi i test</strong></h3><p>Vai oltre e scrivi dei test per la tua applicazione. Dopodiché, fornisci esempi di codice e il modo per eseguirli.</p><p>Questo aiuterà a mostrare che sei certo e convinto che il tuo codice funzionerà senza difficoltà, il che darà fiducia anche agli altri.</p><h3 id="punti-extra"><strong>Punti extra</strong></h3><p>Ecco un altro paio di punti dei quali tenere conto mentre scrivi il tuo README:</p><ul><li>Mantienilo aggiornato - è una buona pratica assicurarsi che il tuo file sia aggiornato. In caso ci fossero modifiche assicurati di aggiornare il README se necessario.</li><li>Scegli una lingua - Veniamo tutti da diversi luoghi e parliamo lingue diverse. Ma questo non significa che tu debba tradurre il tuo codice in dialetto. Scrivere il tuo codice in inglese basta e avanza. Potresti aggiungere un sistema di traduzione in caso la tua audience non conoscesse l'inglese.</li></ul><h2 id="conclusione"><strong>Conclusione</strong></h2><p>Ecco tutto ciò di cui hai bisogno per migliorare i tuoi file README, o addirittura iniziare a scrivere il primo.</p><p>A questo punto sono sicuro che tu sia nella posizione di aggiungere una guida interattiva ed informativa al tuo prossimo progetto o a uno già esistente in modo da farlo spiccare.</p><p>Ci sono molti strumenti che puoi usare per generare automaticamente un README, ma sarebbe meglio provare a farne qualcuno per conto tuo prima di passare ad automatizzare il processo. Nel caso volessi provarne qualcuno:</p><ul><li><a href="https://www.makeareadme.com/">Make a README</a></li><li><a href="https://rahuldkjain.github.io/gh-profile-readme-generator/">README Generator</a></li><li><a href="https://github.com/kefranabg/readme-md-generator">README</a></li></ul><p>Grazie per essere arrivato fino a qui. Se ti è piaciuto questo articolo, per favore condividilo in modo da aiutare altri sviluppatori a migliorare i loro progetti.</p><p>Mi piacerebbe vedere il tuo file README appena realizzato. Condividi il link attraverso uno dei seguenti canali:</p><p>Connettiti con me: <a href="https://twitter.com/larymak1">Twitter</a> | <a href="https://www.youtube.com/channel/UCrT1ARRZfLOuf6nc_97eXEg">YouTube</a> | <a href="https://www.linkedin.com/in/hillary-nyakundi-3a64b11ab/">LinkedIn</a> | <a href="https://github.com/larymak">GitHub</a></p><p>Condividi la tua opinione, apprezzo i feedback costruttivi!</p><p>Buona programmazione ❤</p>
+
+                        </section>
+                        
+                            <div class="sidebar">
+                                
+                                
+                                    
+                                    <script>var localizedAdText = "PUBBLICITÀ";</script>
+                                
+                            </div>
+                        
+                    </div>
+                    <hr>
+                    
+                        <div class="post-full-author-header" data-test-label="author-header-with-bio">
+                            
+                                
+    
+    
+    
+
+    <section class="author-card" data-test-label="translator-card">
+        
+            
+    <img srcset="https://www.freecodecamp.org/italian/news/content/images/size/w60/2022/09/1655131659673.jpg 60w" sizes="60px" src="https://www.freecodecamp.org/italian/news/content/images/size/w60/2022/09/1655131659673.jpg" class="author-profile-image" alt="Tiziano Caruana" width="355" height="355" onerror="this.style.display='none'" loading="lazy" data-test-label="profile-image">
+  
+        
+
+        <section class="author-card-content ">
+            <span class="author-card-name">
+                <a href="/italian/news/author/tiziano_caruana/" data-test-label="profile-link">
+                    
+                        Traduttore: Tiziano Caruana
+                    
+                </a>
+            </span>
+            
+                
+                    <p data-test-label="default-bio">
+                        Leggi <a href="/italian/news/author/tiziano_caruana/">altri articoli</a>.
+                    </p>
+                
+            
+        </section>
+    </section>
+
+                                
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img srcset="https://cdn.hashnode.com/res/hashnode/image/upload/v1682063745392/sf6GpqiCg.png 60w" sizes="60px" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1682063745392/sf6GpqiCg.png" class="author-profile-image" alt="Hillary Nyakundi" width="1000" height="1000" onerror="this.style.display='none'" loading="lazy" data-test-label="profile-image">
+  
+        
+
+        <section class="author-card-content ">
+            <span class="author-card-name">
+                <a href="https://www.freecodecamp.org/news/author/larymak/" data-test-label="profile-link">
+                    
+                        Autore: Hillary Nyakundi (inglese)
+                    
+                </a>
+            </span>
+            
+                
+                    <p data-test-label="author-bio">I&#39;m a Growing Developer with a keen interest in technology, particularly in the areas of open-source and Python. As a passionate technical writer, I aim to share my knowledge with other developers through informative articles that help them grow and succeed.</p>
+                
+            
+        </section>
+    </section>
+
+                            
+                        </div>
+                        <hr>
+                    
+
+                    
+                    
+                        
+    
+
+
+<p data-test-label="social-row-cta" class="social-row">
+    If this article was helpful, <button id="tweet-btn" class="cta-button" data-test-label="tweet-button">share it</button>.
+</p>
+
+
+    
+    <script>document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("tweet-btn"),e=window.location,o="Come%20scrivere%20un%20buon%20file%20README%20per%20i%20tuoi%20progetti%20GitHub".replace(/&#39;/g,"%27"),n="",r="",i=Boolean("[object Object]");let a;if(i&&(n||r)){const t={originalPostAuthor:"Hillary Nyakundi",currentPostAuthor:"Tiziano Caruana"};a=encodeURIComponent(`Grazie ${n||t.originalPostAuthor} per avere scritto questo utile articolo e ${r||t.currentPostAuthor} per averlo tradotto.`)}else!i&&r&&(a=encodeURIComponent(`Grazie ${r} per avere scritto questo utile articolo.`));const c=`window.open(\n    '${a?`https://x.com/intent/post?text=${a}%0A%0A${o}%0A%0A${e}`:`https://x.com/intent/post?text=${o}%0A%0A${e}`}',\n    'share-twitter',\n    'width=550, height=235'\n  ); return false;`;t.setAttribute("onclick",c)});</script>
+
+
+                        
+
+<div class="learn-cta-row" data-test-label="learn-cta-row">
+    <p>
+        Impara a programmare gratuitamente. Il curriculum open source di freeCodeCamp ha aiutato più di 40.000 persone a ottenere un lavoro come programmatori. <a href="https://www.freecodecamp.org/italian/learn" class="cta-button" id="learn-to-code-cta" rel="noopener noreferrer" target="_blank">Inizia</a>
+    </p>
+</div>
+
+                    
+                </section>
+                
+                    
+                        <div class="banner-ad-bottom">
+                            
+                                
+
+<div class="ad-text" data-test-label="ad-text">PUBBLICITÀ</div>
+<div style="display: block; height: auto" id="gam-ad-bottom">
+</div>
+
+                            
+                        </div>
+                    
+                
+            </article>
+        </div>
+    </main>
+
+
+            
+
+
+<footer class="site-footer">
+    <div class="footer-top">
+        <div class="footer-desc-col">
+            <p data-test-label="tax-exempt-status">freeCodeCamp è un'organizzazione di beneficenza 501(c)(3) esentasse supportata da donazioni (Numero di identificazione per le tasse federali negli Stati Uniti d'America: 82-0779546)</p>
+            <p data-test-label="mission-statement">Our mission: to help people learn to code for free. We accomplish this by creating thousands of videos, articles, and interactive coding lessons - all freely available to the public.</p>
+            <p data-test-label="donation-initiatives">Le donazioni a freeCodeCamp supportano le nostre iniziative educative e aiutano a pagare i server, i servizi e lo staff.</p>
+            <p class="footer-donation" data-test-label="donate-text">
+                Puoi <a href="https://www.freecodecamp.org/italian/donate" class="inline" rel="noopener noreferrer" target="_blank">fare una donazione qui</a>.
+            </p>
+        </div>
+        <div class="trending-guides" data-test-label="trending-guides">
+            <h2 id="trending-guides" class="col-header">Trending Books and Handbooks</h2>
+            <ul class="trending-guides-articles" aria-labelledby="trending-guides">
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/json-in-python-come-convertire-una-stringa-in-json/" rel="noopener noreferrer" target="_blank">Python JSON
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/metodi-per-array-javascript-un-tutorial-sui-metodi-piu-utili-spiegati-con-esempi/" rel="noopener noreferrer" target="_blank">Metodi array JS
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-integrare-material-ui-data-grid-in-react/" rel="noopener noreferrer" target="_blank">Data Grid React
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/casella-di-testo-in-html/" rel="noopener noreferrer" target="_blank">Casella di testo HTML
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/il-manuale-di-architettura-del-software/" rel="noopener noreferrer" target="_blank">Architettura Software
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/istruzione-sql-distinct-come-eseguire-query-selezionare-e-contare/" rel="noopener noreferrer" target="_blank">Count in SQL
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/il-comando-git-commit-spiegato/" rel="noopener noreferrer" target="_blank">Git commit
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-caricare-immagini-in-react-con-il-lazy-loading/" rel="noopener noreferrer" target="_blank">Lazy load in React
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-imparare-a-programmare-la-guida-che-avrei-voluto-quando-ho-iniziato-a-imparare-a-programmare/" rel="noopener noreferrer" target="_blank">Impara a programmare
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/errore-502-bad-gateway-soluzioni/" rel="noopener noreferrer" target="_blank">502 bad gateway
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-impostare-un-reverse-proxy-facile-e-sicuro-con-docker-nginx-e-letsencrypt/" rel="noopener noreferrer" target="_blank">Reverse proxy
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/tutorial-jvm-larchitettura-della-java-virtual-machine-spiegata-per-principianti/" rel="noopener noreferrer" target="_blank">Tutorial JVM
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/react-context-per-principianti/" rel="noopener noreferrer" target="_blank">React Context
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/tutorial-sulle-promise-in-javascript-resolve-reject-e-concatenamento-in-js-e-es6/" rel="noopener noreferrer" target="_blank">Promise in JS
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/il-tag-html-select/" rel="noopener noreferrer" target="_blank">Il tag HTML select
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/il-manuale-css-una-comoda-guida-al-css-per-sviluppatori/" rel="noopener noreferrer" target="_blank">Manuale CSS
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/i-migliori-esempi-di-php/" rel="noopener noreferrer" target="_blank">Esempi PHP
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/introduzione-a-deno-intro-to-deno-guide-for-beginners/" rel="noopener noreferrer" target="_blank">Intro a Deno
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-funziona-flexbox-spiegato-con-grandi-gif-colorate-e-animate-2/" rel="noopener noreferrer" target="_blank">CSS Flexbox
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-usare-arrays-binarysearch-in-java/" rel="noopener noreferrer" target="_blank">Array.binarySearch()
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-costruire-un-componente-di-paginazione-personalizzato-in-react/" rel="noopener noreferrer" target="_blank">Paginazione in React
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/i-solid-i-principi-della-programmazione-orientata-agli-oggetti-spiegati-in-parole-povere/" rel="noopener noreferrer" target="_blank">Principi SOLID
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/tabelle-html-un-tutorial-con-esempi-di-codice/" rel="noopener noreferrer" target="_blank">Tabelle HTML
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/npm-uninstall-come-rimuovere-un-pacchetto/" rel="noopener noreferrer" target="_blank">npm uninstall
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-googlare-come-un-pro-10-suggerimenti-per-fare-ricerche-piu-efficienti-su-google/" rel="noopener noreferrer" target="_blank">Googlare come un pro
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/lista-di-comandi-per-il-prompt-un-tutorial-per-la-riga-di-comando/" rel="noopener noreferrer" target="_blank">Tutorial CLI
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-creare-e-manipolare-un-database-sql-con-python/" rel="noopener noreferrer" target="_blank">SQL con Python
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/come-cambiare-i-programmi-allavvio-di-windows-7-8-e-10/" rel="noopener noreferrer" target="_blank">Programmi avvio Windows
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/npm-e-npx-qual-e-la-differenza/" rel="noopener noreferrer" target="_blank">npm e npx
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/italian/news/maschere-di-sottorete-24-30-26-27-29-e-altri-riferimenti-per-indirizzi-ip-e-cidr/" rel="noopener noreferrer" target="_blank">Maschere di sottorete
+                    </a>
+                </li>
+            </ul>
+            <div class="spacer" style="padding: 15px 0;"></div>
+            <div>
+                <h2 id="mobile-app" class="col-header">
+                    Mobile App
+                </h2>
+                <div class="min-h-[1px] px-[15px] md:w-2/3 md:ml-[16.6%]">
+                    <ul aria-labelledby="mobile-app" class="mobile-app-container">
+                        <li>
+                            <a href="https://apps.apple.com/us/app/freecodecamp/id6446908151?itsct=apps_box_link&itscg=30200" rel="noopener noreferrer" target="_blank">
+                                <img src="https://cdn.freecodecamp.org/platform/universal/apple-store-badge.svg" lang="en" alt="Download on the App Store">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://play.google.com/store/apps/details?id=org.freecodecamp" rel="noopener noreferrer" target="_blank">
+                                <img src="https://cdn.freecodecamp.org/platform/universal/google-play-badge.svg" lang="en" alt="Get it on Google Play">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <h2 class="col-header" data-test-label="our-nonprofit">La nostra Charity</h2>
+        <div class="our-nonprofit">
+
+            <a href="https://hashnode.com/" rel="noopener noreferrer" target="_blank" data-test-label="powered-by">
+                Publication powered by Hashnode
+            </a>
+            <a href="https://www.freecodecamp.org/italian/news/faq/" rel="noopener noreferrer" target="_blank" data-test-label="about">
+                Informazioni
+            </a>
+            <a href="https://www.linkedin.com/school/free-code-camp/people/" rel="noopener noreferrer" target="_blank" data-test-label="alumni">
+                Network degli alunni
+            </a>
+            <a href="https://github.com/freeCodeCamp/" rel="noopener noreferrer" target="_blank" data-test-label="open-source">
+                Open Source
+            </a>
+            <a href="https://www.freecodecamp.org/news/shop/" rel="noopener noreferrer" target="_blank" data-test-label="shop">
+                Shop
+            </a>
+            <a href="https://www.freecodecamp.org/italian/news/domande-frequenti-supporto-tecnico-freecodecamp-faq/" rel="noopener noreferrer" target="_blank" data-test-label="support">
+                Supporto
+            </a>
+            <a href="https://www.freecodecamp.org/news/sponsors/" rel="noopener noreferrer" target="_blank" data-test-label="sponsors">
+                Sponsor
+            </a>
+            <a href="https://www.freecodecamp.org/italian/news/freecodecamps-academic-honesty-policy/" rel="noopener noreferrer" target="_blank" data-test-label="honesty">
+                Onestà accademica
+            </a>
+            <a href="https://www.freecodecamp.org/italian/news/codice-di-condotta/" rel="noopener noreferrer" target="_blank" data-test-label="coc">
+                Codice di condotta
+            </a>
+            <a href="https://www.freecodecamp.org/news/privacy-policy/" rel="noopener noreferrer" target="_blank" data-test-label="privacy">
+                Politica sulla privacy
+            </a>
+            <a href="https://www.freecodecamp.org/news/terms-of-service/" rel="noopener noreferrer" target="_blank" data-test-label="tos">
+                Termini di servizio
+            </a>
+            <a href="https://www.freecodecamp.org/news/copyright-policy/" rel="noopener noreferrer" target="_blank" data-test-label="copyright">
+                Politica sul Copyright
+            </a>
+        </div>
+    </div>
+</footer>
+
+        </div>
+
+        
+        
+        
+
+        
+        
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"bdb993c6dde44e178aabd9555e75e4f4","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
+
