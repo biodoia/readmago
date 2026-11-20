@@ -33,8 +33,8 @@ func TestDashboardHandler(t *testing.T) {
 	}
 	page := rec.Body.String()
 	for _, want := range []string{
-		"Cantiere README", "hx-get=\"/fragments/overview\"", "Oxanium", "JetBrains Mono",
-		"prefers-reduced-motion", "127.0.0.1:8780",
+		"Cantiere README", "hx-get=\"/fragments/overview\"", "Oxanium", "IBM Plex Mono",
+		"prefers-reduced-motion", "127.0.0.1:8780", "hx-get=\"/fragments/worker\"",
 	} {
 		if !strings.Contains(page, want) {
 			t.Errorf("dashboard HTML missing %q", want)
@@ -121,7 +121,7 @@ func TestFragmentsOverviewWithFakeDataEngineer(t *testing.T) {
 	rec := httptest.NewRecorder()
 	fragmentsOverview(rec, httptest.NewRequest(http.MethodGet, "/fragments/overview", nil))
 	body := rec.Body.String()
-	for _, want := range []string{"Repo monitorati", "README pronti", "In coda", "In staging"} {
+	for _, want := range []string{"Repo monitorati", "README pronti", "Da processare", "In staging"} {
 		if !strings.Contains(body, want) {
 			t.Errorf("overview fragment missing %q", want)
 		}

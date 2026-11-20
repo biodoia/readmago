@@ -1,111 +1,157 @@
 #!/usr/bin/env bash
-# readmago — monitoraggio h24/7 di tutti i repository
-# Valuta i README e li migliora in loop continuo
-#
-# Uso: ./scripts/monitor-repos.sh
+# readmago — worker continuo dei README.
+# Ogni ciclo processa un piccolo lotto di repository REALI che non hanno ancora
+# README, genera il file dal contenuto del repo, lo scrive nello staging e lo
+# committa localmente. Il cursore è persistente: il lavoro riprende da dove era
+# arrivato anche dopo un riavvio del daemon. Nessun dato simulato.
+set -uo pipefail
 
-set -euo pipefail
+ROOT="/home/lisergico25/projects/readmago"
+DATA="http://127.0.0.1:8771"
+JUDGE="http://127.0.0.1:8768"
+STATE="$ROOT/tmp/worker-state.json"
+LOG="$ROOT/tmp/monitor.log"
+QUEUE="$ROOT/tmp/worker-queue.txt"
+BATCH="${READMAGO_BATCH:-5}"
+mkdir -p "$ROOT/tmp"
 
-READMAGO_ROOT="/home/lisergico25/projects/readmago"
-PROJECTS_DIR="/home/lisergico25/projects"
-AGENT_JUDGE="http://127.0.0.1:8768"
-AGENT_WRITER="http://127.0.0.1:8770"
-AGENT_REVIEWER="http://127.0.0.1:8769"
-AGENT_INSTRUCTOR="http://127.0.0.1:8772"
-AGENT_DEMO="http://127.0.0.1:8773"
-AGENT_DATA="http://127.0.0.1:8771"
+log() { printf '[%s] [readmago-worker] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*" | tee -a "$LOG"; }
 
-SCORE_THRESHOLD=70
-LOG_FILE="$READMAGO_ROOT/tmp/monitor.log"
+log "=== ciclo worker — batch=$BATCH ==="
 
-log() {
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] [readmago-monitor] $*" | tee -a "$LOG_FILE"
-}
+# 1. Coda reale dal data-engineer. jq è un prerequisito verificabile.
+if ! command -v jq >/dev/null 2>&1; then log "ERRORE: jq non disponibile"; exit 1; fi
+priority=""
+for attempt in 1 2 3; do
+  priority="$(curl -fsS -m 10 "$DATA/priority" 2>/dev/null || true)"
+  [ -n "$priority" ] && break
+  log "data-engineer non pronto (tentativo $attempt/3), riprovo"
+  sleep 2
+done
+if [ -z "$priority" ]; then log "ERRORE: data-engineer non raggiungibile — nessun lavoro inventato"; exit 1; fi
 
-log "=== Avvio ciclo monitoraggio repository ==="
+printf '%s' "$priority" | jq -r '.repositories[] | select(.in_staging == true and .has_readme == false) | [.priority_score, .path, .full_name] | @tsv' \
+  | sort -rn > "$QUEUE"
+total=$(wc -l < "$QUEUE" | tr -d ' ')
+log "repo senza README in staging: $total"
 
-# 1. Ottieni lista repository ordinata per priorità
-log "Fase 1: raccolta metriche e priorità (readmago-data-engineer)"
-PRIORITY_JSON=$(curl -s "$AGENT_DATA/priority" 2>/dev/null || echo "{}")
-
-if [ "$PRIORITY_JSON" = "{}" ] || [ -z "$PRIORITY_JSON" ]; then
-  log "WARN: data-engineer non risponde, uso scansione diretta dei repository"
-  # Fallback: elenca directory con .git
-  REPO_LIST=$(find "$PROJECTS_DIR" -maxdepth 1 -name ".git" -type d 2>/dev/null | sed 's|/.git||' | sort)
-else
-  # Estrai path dai JSON (estrazione semplice con grep/sed)
-  REPO_LIST=$(echo "$PRIORITY_JSON" | grep -o '"path":"[^"]*"' | sed 's/"path":"//;s/"//' | sort)
-fi
-
-log "Trovati $(echo "$REPO_LIST" | grep -c . || echo 0) repository da valutare"
-
-# 2. Per ogni repository, valuta il README
-while IFS= read -r repo_path; do
-  [ -z "$repo_path" ] && continue
-
-  repo_name=$(basename "$repo_path")
-  readme_path="$repo_path/README.md"
-
-  log "Valutazione: $repo_name"
-
-  # 2a. Chiama il giudice
-  JUDGE_RESP=$(curl -s -X POST "$AGENT_JUDGE/judge" \
-    -H 'Content-Type: application/json' \
-    -d "{\"path\":\"$repo_path\"}" 2>/dev/null || echo '{"score":0,"needs_work":true}')
-
-  SCORE=$(echo "$JUDGE_RESP" | grep -o '"score":[0-9]*' | sed 's/"score"://' || echo "0")
-  NEEDS_WORK=$(echo "$JUDGE_RESP" | grep -o '"needs_work":[a-z]*' | sed 's/"needs_work"://' || echo "true")
-
-  log "  Score: $score/100, Needs work: $needs_work"
-
-  if [ "$NEEDS_WORK" = "true" ] || [ "$SCORE" -lt "$SCORE_THRESHOLD" ]; then
-    log "  -> README richiede miglioramento (score < $SCORE_THRESHOLD)"
-
-    # 2b. Rigenera con lo scrittore
-    log "  Fase 2: generazione README (readmago-writer)"
-    WRITER_RESP=$(curl -s -X POST "$AGENT_WRITER/write" \
-      -H 'Content-Type: application/json' \
-      -d "{\"repo_name\":\"$repo_name\",\"description\":\"Repository $repo_name\",\"features\":[],\"install\":\"go build -o $repo_name .\",\"usage\":\"./$repo_name\",\"license\":\"MIT\"}" 2>/dev/null || echo '{"content":""}')
-
-    # 2c. Revisiona con il revisore
-    log "  Fase 3: revisione bozza (readmago-reviewer)"
-    REVIEWER_RESP=$(curl -s -X POST "$AGENT_REVIEWER/review" \
-      -H 'Content-Type: application/json' \
-      -d "{\"content\":\"$(echo "$WRITER_RESP" | grep -o '"content":"[^"]*"' | sed 's/"content":"//;s/"$//')\",\"issues\":[]}" 2>/dev/null || echo '{"content":""}')
-
-    # 2d. Aggiungi istruzioni con l'istruttore
-    log "  Fase 4: istruzioni e presentazioni (readmago-instructor)"
-    INSTRUCT_RESP=$(curl -s -X POST "$AGENT_INSTRUCTOR/instruct" \
-      -H 'Content-Type: application/json' \
-      -d "{\"topic\":\"$repo_name\",\"audience\":\"sviluppatori\"}" 2>/dev/null || echo '{"content":""}')
-
-    # 2e. Cattura screenshot e video con il demo agent
-    log "  Fase 5: demo multimediali (readmago-demo)"
-    DEMO_SCREEN=$(curl -s -X POST "$AGENT_DEMO/screenshot" \
-      -H 'Content-Type: application/json' \
-      -d "{\"url\":\"http://127.0.0.1:8768\",\"output\":\"$repo_path/assets/screenshot.svg\"}" 2>/dev/null || echo '{"path":""}')
-
-    # 2f. Scrivi il README migliorato
-    FINAL_CONTENT=$(echo "$REVIEWER_RESP" | grep -o '"content":"[^"]*"' | sed 's/"content":"//;s/"$//')
-    if [ -n "$FINAL_CONTENT" ] && [ "$FINAL_CONTENT" != "{}" ]; then
-      echo "$FINAL_CONTENT" > "$readme_path"
-      log "  -> README scritto in $readme_path"
-    fi
-
-    # 2g. Commit
-    cd "$repo_path"
-    if git diff --quiet 2>/dev/null; then
-      log "  -> Nessuna modifica da commitare"
-    else
-      git add README.md 2>/dev/null || true
-      git commit -m "docs(readme): miglioramento automatico readmago (score era $score/100)" 2>/dev/null && \
-        log "  -> Commit effettuato" || \
-        log "  WARN: commit fallito (forse già committato o repo locked)"
+if [ "$total" -eq 0 ]; then
+  log "coda vuota: richiedo al data-engineer un nuovo batch di repository"
+  batch_result="$(curl -fsS -m 120 -X POST "$DATA/process-batch" 2>/dev/null || true)"
+  if [ -n "$batch_result" ]; then
+    log "batch richiesto: $batch_result"
+    priority="$(curl -fsS -m 10 "$DATA/priority" 2>/dev/null || true)"
+    if [ -n "$priority" ]; then
+      printf '%s' "$priority" | jq -r '.repositories[] | select(.in_staging == true and .has_readme == false) | [.priority_score, .path, .full_name] | @tsv' \
+        | sort -rn > "$QUEUE"
+      total=$(wc -l < "$QUEUE" | tr -d ' ')
     fi
   else
-    log "  -> README accettabile (score >= $SCORE_THRESHOLD)"
+    log "ERRORE: /process-batch non raggiungibile"
   fi
+  if [ "$total" -eq 0 ]; then
+    log "nessun repository disponibile: fine reale della coda (non invento lavoro)"
+    printf '{"cursor":0,"processed":0,"total":0,"last":"%s"}\n' "$(date -Iseconds)" > "$STATE"
+    exit 0
+  fi
+  log "nuova coda: $total repository senza README"
+fi
 
-done <<< "$REPO_LIST"
+cursor=0
+if [ -f "$STATE" ]; then
+  cursor=$(jq -r '.cursor // 0' "$STATE" 2>/dev/null || echo 0)
+fi
+case "$cursor" in ''|*[!0-9]*) cursor=0 ;; esac
+if [ "$cursor" -ge "$total" ]; then cursor=0; log "cursore azzerato (fine coda)"; fi
 
-log "=== Ciclo monitoraggio completato ==="
+end=$((cursor + BATCH))
+[ "$end" -gt "$total" ] && end=$total
+processed=0
+
+seen=0
+for ((i=cursor; i<end; i++)); do
+  seen=$((seen + 1))
+  line=$(sed -n "$((i+1))p" "$QUEUE")
+  repo_path=$(printf '%s' "$line" | cut -f2)
+  full_name=$(printf '%s' "$line" | cut -f3)
+  [ -z "$repo_path" ] && continue
+  if [ ! -d "$repo_path" ]; then log "SKIP $full_name: path inesistente"; continue; fi
+  if [ -f "$repo_path/README.md" ]; then log "SKIP $full_name: README già presente"; continue; fi
+
+  log "lavoro su $full_name ($repo_path)"
+
+  # Generazione del README DA DATI REALI del repo: modulo Go, cartelle,
+  # comandi, licenza, lista file. Nessun template con informazioni inventate.
+  if ! python3 - "$repo_path" > "$repo_path/README.md" <<'PY'
+import os, sys, re
+root = sys.argv[1]
+name = os.path.basename(root).replace('biodoia__','')
+module, goversion = '', ''
+gomod = os.path.join(root, 'go.mod')
+if os.path.isfile(gomod):
+    txt = open(gomod, encoding='utf-8', errors='replace').read()
+    m = re.search(r'^module\s+(\S+)', txt, re.M)
+    if m: module = m.group(1)
+    m = re.search(r'^go\s+(\S+)', txt, re.M)
+    if m: goversion = m.group(1)
+dirs = sorted(d for d in os.listdir(root) if os.path.isdir(os.path.join(root,d)) and d not in {'.git','assets','vendor'})
+cmds = []
+for d in dirs:
+    if d == 'cmd':
+        try: cmds = sorted(x for x in os.listdir(os.path.join(root,'cmd')) if os.path.isdir(os.path.join(root,'cmd',x)))
+        except OSError: pass
+license_name = next((f for f in os.listdir(root) if f.lower().startswith('license')), '')
+
+print(f"# {name}\n")
+print(f"> Repository: `{module or name}`\n")
+print("## Cosa fa\n")
+print(f"Repository `{name}` monitorato da readmago. La documentazione sottostante è derivata dal contenuto effettivo del repository.\n")
+if goversion:
+    print(f"- **Go**: `{goversion}`\n")
+print("## Struttura\n")
+if dirs:
+    print("| Directory | Contenuto |\n|---|---|")
+    for d in dirs[:14]:
+        print(f"| `{d}/` | directory presente nel repository |")
+    print()
+else:
+    print("Nessuna directory di primo livello rilevata.\n")
+if cmds:
+    print("## Comandi\n")
+    for c in cmds[:10]:
+        print(f"- `go run ./cmd/{c}`")
+    print()
+print("## Avvio locale\n")
+if module:
+    print("```bash\ngo build ./...\ngo test ./...\n```\n")
+else:
+    print("```bash\n# vedere albero sorgente per il comando di avvio\n```\n")
+if license_name:
+    print(f"## Licenza\n\n[{license_name}]({license_name})\n")
+print("---\n")
+print(f"*Generato da readmago da dati reali del repository · {name}*\n")
+PY
+  then log "ERRORE: generazione README fallita per $full_name"; continue; fi
+
+  log "README scritto: $repo_path/README.md"
+  (cd "$repo_path" && git add README.md >/dev/null 2>&1 && \
+    git -c user.name=readmago -c user.email=readmago@biodoia.dev commit -m "docs(readme): genera README da contenuto reale del repo" >/dev/null 2>&1) \
+    && log "commit locale effettuato: $full_name" \
+    || log "commit non effettuato (repo non git o nessuna differenza)"
+
+  # Verifica reale del risultato: il giudice legge il file appena scritto.
+  verdict="$(curl -fsS -m 10 -X POST "$JUDGE/judge" -H 'Content-Type: application/json' \
+      -d "{\"path\":\"$repo_path\"}" 2>/dev/null || true)"
+  if [ -n "$verdict" ]; then
+    score="$(printf '%s' "$verdict" | jq -r '.score // 0')"
+    grade="$(printf '%s' "$verdict" | jq -r '.grade // "F"')"
+    log "verdetto reale: $full_name → $score/100 ($grade)"
+  else
+    log "verdetto non disponibile: judge non raggiungibile"
+  fi
+  processed=$((processed + 1))
+done
+
+next=$((cursor + seen))
+printf '{"cursor":%d,"processed":%d,"total":%d,"last":"%s"}\n' "$next" "$processed" "$total" "$(date -Iseconds)" > "$STATE"
+log "=== ciclo completato: $processed repo lavorati, $seen esaminati, cursore $next/$total ==="

@@ -21,6 +21,15 @@
 └─────────────────────────────────────────────┘
 ```
 
+### Worker continuo
+
+`readmagogod` esegue `scripts/monitor-repos.sh` ogni 20 secondi: il worker legge la coda
+reale del data-engineer, genera README dal contenuto effettivo di ogni repository,
+li scrive nello staging, li committa localmente e chiede nuovi batch quando la coda
+si esaurisce. Un cursore persistente (`tmp/worker-state.json`) fa riprendere il lavoro
+dopo ogni riavvio. `readmago-judge` (v2) valuta il **file reale** su sette assi:
+nessun punteggio simulato.
+
 ### Cockpit web
 
 `readmago-dashboard` (`http://127.0.0.1:8780`) è il cockpit HTMX/hypermedia della pipeline:
