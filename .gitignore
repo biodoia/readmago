@@ -67,3 +67,6 @@ catalog/snippets/db/
 
 # Staging repos clonati dal data-engineer (runtime, non da committare)
 .monitored-repos/
+
+# Local agent build artifacts
+agent/*/readmago-*
