@@ -41,3 +41,5 @@ tmp/
 
 # Compiled binaries
 /readmago
+/agent/*/readmago-mago
+/agent/*/readmago-harvester
