@@ -2,8 +2,9 @@
 name: gofainder
 description: |
   Multi-engine search agent for Biodoia ecosystem. 15+ search engines,
-  crypto price feeds, content extraction, research pipelines. Single binary
-  with subcommands: serve, search, price-feed, chat, mcp, tui, web.
+  crypto price feeds, content extraction, research pipelines. Program/program
+  pair (FGT 2026-11-27): `gofainder` = CLI + heads (search, price-feed, chat,
+  mcp, tui, web), `gofainderd` = daemon systemd 24/7 (REST API + collectors).
 metadata:
   version: "3.0.0"
   category: research
@@ -11,24 +12,25 @@ metadata:
   priority: critical
   requires: [memogo]
 compatibility: |
-  Binary: ~/projects/gofainder/bin/gofainder (anche ~/.local/bin/gofainder).
-  HTTP API: 127.0.0.1:8086 (PORT=8086 in ~/.config/systemd/user/gofainder.service).
+  Binari: ~/projects/gofainder/bin/gofainder (programma) e
+  ~/projects/gofainder/bin/gofainderd (demone), installati in ~/.local/bin.
+  HTTP API: 127.0.0.1:8086 (PORT=8086 in ~/.config/systemd/user/gofainderd.service).
   ⚠ :8085 è goleciave (secrets vault) — mai puntarci traffico gofainder.
-  Il default nel codice è ancora PORT=8085 (cmd/gofainder/main.go:154): passa PORT esplicito.
-  See also: memogo, godocai, biblaigo.
+  Il default nel codice è `PORT=8086` (internal/daemon): la unit systemd lo
+  passa esplicito. See also: memogo, godocai, biblaigo.
 ---
 
 # GoFainder v3.0 — Search + Price Engine
 
 ## What
 
-Multi-engine search + crypto price feed. One binary.
+Multi-engine search + crypto price feed. Coppia programma/demone (FGT 2026-11-27).
 
 ```
 gofainder search "query"          # web search across 15+ engines
 gofainder price-feed              # real-time crypto prices → Redis
 gofainder chat                    # conversational agent
-gofainder serve                   # HTTP API on 127.0.0.1:8086
+gofainderd                        # daemon 24/7: HTTP API on 127.0.0.1:8086
 gofainder mcp                     # MCP server
 ```
 
@@ -81,7 +83,7 @@ POST :8086/api/chat                  # chat endpoint
 cd ~/projects/gofainder
 go build -o gofainder ./cmd/gofainder
 
-gofainder serve                     # HTTP API 127.0.0.1:8086
+gofainderd                     # HTTP API 127.0.0.1:8086
 gofainder search "solana memecoins" # CLI search
 gofainder price-feed                # start price feed
 gofainder chat                      # conversational REPL
@@ -215,7 +217,7 @@ Motore di ricerca multi-engine + price feed + research/council per l'ecosistema 
 
 | Comando | Scopo |
 |---------|-------|
-| `serve` | REST + MCP (daemon) |
+| `gofainderd` | REST API + collectors (demone systemd 24/7) |
 | `mcp` | MCP stdio |
 | `tui` | TUI |
 | `web [port]` | Web UI |
@@ -235,8 +237,9 @@ Motore di ricerca multi-engine + price feed + research/council per l'ecosistema 
 
 ### Porte e sicurezza
 
-- `serve` default: `127.0.0.1:8086` (REST + MCP). Il codice ha ancora default `PORT=8085`
-  in `cmd/gofainder/main.go:154` → **passare PORT esplicito**.
+- `gofainderd` default: `127.0.0.1:8086` (REST API + collectors). Il default è
+  `PORT=8086` in `internal/daemon/daemon.go` → la unit systemd lo passa
+  esplicito.
 - ⚠️ `8085` = goleciave (secrets vault) — mai instradare traffico gofainder lì.
 
 ### Workflow harvesting KB (piano operativo)

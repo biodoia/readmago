@@ -1,9 +1,11 @@
 # GoFainder — User Manual (v3.0)
 
 > **Tool**: motore di ricerca multi-engine, price feed, research e council.
-> **Binario**: `/home/lisergico25/.local/bin/gofainder` (repo: `/home/lisergico25/projects/gofainder`).
+> **Binari**: `/home/lisergico25/.local/bin/gofainder` (programma) e
+> `/home/lisergico25/.local/bin/gofainderd` (demone) — repo: `/home/lisergico25/projects/gofainder`.
 > **Skill**: `/home/lisergico25/projects/gofainder/skills/gofainder/SKILL.md`
-> **Serve**: `gofainder serve` → REST + MCP (daemon); `gofainder mcp` → MCP stdio.
+> **Coppia programma/programmad** (direttiva FGT 2026-11-27, binario unico abbandonato).
+> **Demone**: `gofainderd` → REST API + collectors (systemd, 24/7); **Programma**: `gofainder mcp` → MCP stdio.
 
 ## 1. Scopo
 
@@ -14,7 +16,7 @@ ricorsive). È il motore di acquisizione della **Knowledge Base** dell'ecosistem
 ## 2. Comandi
 
 ```bash
-gofainder serve                  # REST + MCP server (daemon, systemd)
+gofainderd                     # demone systemd 24/7: REST API + collectors
 gofainder mcp                    # MCP server stdio (per agenti IA)
 gofainder tui                    # TUI dashboard
 gofainder web [port]            # Web UI standalone
@@ -35,8 +37,8 @@ gofainder version
 
 ## 3. Porte e sicurezza
 
-- `gofainder serve` default: **127.0.0.1:8086** (REST + MCP). Il codice ha ancora default
-  `PORT=8085` in `cmd/gofainder/main.go:154` — **passare PORT esplicito**.
+- `gofainderd` default: **127.0.0.1:8086** (REST API + collectors). Il default è
+  `PORT=8086` in `internal/daemon/daemon.go` — la unit systemd lo passa esplicito.
 - ⚠️ **8085 è goleciave (secrets vault)** — mai instradare traffico gofainder su 8085.
 
 ## 4. Workflow di ricerca / harvesting

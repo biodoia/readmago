@@ -3,8 +3,10 @@ name: biblaigo
 description: |
   Knowledge organizer for the Biodoia ecosystem. Indexes Markdown/text documents into a
   FTS5 Knowledge Base, runs sub-millisecond semantic/keyword search, exposes stats/TUI/web,
-  and serves gRPC+REST+MCP+A2A. Use for knowledge organization, KB indexing, retrieval,
-  research memory. (Not a database: store is FTS5; PostgreSQL+pgvector lives in memogo.)
+  and serves gRPC+REST+A2A from the daemon half of the program/program pair
+  (`biblaigo` = CLI + heads, `biblaigod` = daemon systemd 24/7).
+  Use for knowledge organization, KB indexing, retrieval, research memory.
+  (Not a database: store is FTS5; PostgreSQL+pgvector lives in memogo.)
 metadata:
   version: "1.0.0"
   category: knowledge
@@ -12,8 +14,11 @@ metadata:
   priority: critical
   requires: [memogo]
 compatibility: |
-  Binary: ~/projects/biblaigo/bin/biblaigo (anche ~/.local/bin/biblaigo).
-  Serve: biblaigo serve (gRPC + REST + MCP + A2A). Web: biblaigo web [port].
+  Binari: ~/projects/biblaigo/bin/biblaigo (programma) e
+  ~/projects/biblaigo/bin/biblaigod (demone), installati in ~/.local/bin.
+  Daemon: biblaigod (gRPC 50060, A2A 50062, REST 50063, unit biblaigod.service).
+  Programma: biblaigo (CLI + heads: index/search/stats/mcp/tui/web/memory/codegraph).
+  Coppia programma/programmad (FGT 2026-11-27, binario unico abbandonato).
   Store: FTS5 knowledge DB. PostgreSQL+pgvector via memogo (goleciave DSN).
 ---
 
@@ -28,14 +33,14 @@ searches (<10 ms), tracks topics and trust scores, stages pending items.
 biblaigo index <path>   # Markdown → FTS5 KB
 biblaigo search <q>     # FTS5 query
 biblaigo stats           # KB stats
-biblaigo serve           # gRPC+REST+MCP+A2A
+biblaigod                  # daemon gRPC+REST+A2A (systemd)
 ```
 
 ## Commands
 
 | Command | Scopo |
 |---------|-------|
-| `biblaigo serve` | Server completo (systemd) |
+| `biblaigod` | Demone completo (systemd 24/7): gRPC + A2A + REST |
 | `biblaigo mcp` | MCP stdio per agenti |
 | `biblaigo index <path>` | Indicizza file Markdown |
 | `biblaigo search <query>` | Ricerca FTS5 |

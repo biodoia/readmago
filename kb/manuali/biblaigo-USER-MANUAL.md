@@ -1,8 +1,11 @@
 # Biblaigo — User Manual (v1.0)
 
 > **Tool**: knowledge organizer (FTS5 Knowledge Base).
-> **Binario**: `/home/lisergico25/.local/bin/biblaigo` (repo: `/home/lisergico25/projects/biblaigo`).
-> **Serve**: `biblaigo serve` (gRPC + REST + MCP + A2A), `biblaigo mcp`, `biblaigo web [port]`.
+> **Binari**: `/home/lisergico25/.local/bin/biblaigo` (programma) e
+> `/home/lisergico25/.local/bin/biblaigod` (demone) — repo: `/home/lisergico25/projects/biblaigo`.
+> **Coppia programma/programmad** (direttiva FGT 2026-11-27, binario unico abbandonato).
+> **Demone**: `biblaigod` (gRPC 50060 + A2A 50062 + REST 50063, unit systemd `biblaigod.service`).
+> **Programma**: `biblaigo mcp`, `biblaigo web [port]`, `biblaigo index|search|stats`.
 
 ## 1. Scopo
 
@@ -12,7 +15,7 @@ FTS5. È il **cervello KB** dell'ecosistema: store condiviso per KB, topic, retr
 ## 2. Comandi
 
 ```bash
-biblaigo serve              # gRPC + REST + MCP + A2A server (systemd)
+biblaigod                # demone systemd 24/7: gRPC + A2A + REST
 biblaigo mcp                # MCP server (stdio, per agenti)
 biblaigo index <path>      # Index Markdown/text → FTS5 KB
 biblaigo search <query>    # FTS5 search (<10ms)
